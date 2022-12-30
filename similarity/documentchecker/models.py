@@ -3,16 +3,17 @@ from django.db import models
 # Create your models here.
 
 report_choices = [
-    ('In Progress', 'In Progress'),
-    ('Converted', 'Converted'),
-    ('Unsuccessful', 'Unsuccessful'),
-    ('Error In File', 'Error In File'),]
+    ('Files Submitted', 'Files Submitted'),
+    ('Documents Processed Successfully', 'Documents Processed Successfully'),
+    ('Unsuccessful', 'Unsuccessful'),]
 
 
 
 class FileUpload(models.Model):
     file        =    models.FileField(upload_to='documenmt/')
     author      =    models.CharField(max_length=90,null=True,blank=True)
+    year          = models.DateTimeField(blank=True,null=True)
+    word_count    = models.CharField(max_length=90)
 
     
     def __str__(self) -> str:
@@ -20,11 +21,14 @@ class FileUpload(models.Model):
     
     
 class Threshold(models.Model):
+    title = models.CharField(max_length=100)
     similarity_score   = models.CharField(max_length=90,null=True,blank=True)
     distinct_year      = models.CharField(max_length=90,null=True,blank=True)
     file_per_year      = models.CharField(max_length=90,null=True,blank=True)
     words_per_year     = models.CharField(max_length=90,null=True,blank=True)
     total_words        = models.CharField(max_length=90,null=True,blank=True)
+    active = models.BooleanField(default=False)
+
 
 class Task(models.Model):
     file        =    models.FileField(upload_to='documenmt/')
@@ -32,9 +36,3 @@ class Task(models.Model):
     description = models.CharField(max_length=300)
     def __str__(self) -> str:
         return self.status
-    
-    
-class InfoPerYear(models.Model):
-    year          = models.CharField(max_length=90)
-    file          = models.ManyToManyField(FileUpload)
-    word_count    = models.CharField(max_length=90)
