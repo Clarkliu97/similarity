@@ -7,7 +7,7 @@ from django.core.files.storage import default_storage
 from rest_framework import generics, permissions, status
 from rest_framework.response import Response
 from docx import Document
-from .models import FileUpload, Threshold,Task
+from .models import File, Threshold,SimilarityCheck
 from .tasks import similaritycheck
 from django.db.models import Sum
 
@@ -37,7 +37,7 @@ def build_data(queryset):
         
         data_dict[year] = {}
         
-        year_querset=queryset.filter(year__year=year)
+        year_querset=queryset.filter(created_at__year=year)
         file_per_year=year_querset.values_list('file').count()
         data_dict[year]['file_count'] = file_per_year
         if file_per_year < int(threshold_obj.file_per_year):
@@ -75,13 +75,17 @@ class UploadFile(generics.GenericAPIView):
     def post(self, request):
         
         file = request.data.get("file", None)
+        print("file>>>>>>>>>>>>>>>>>",file.name)
         if file is None or file=='':
             return Response({"file": "file is required"}, status=status.HTTP_400_BAD_REQUEST)
         
         extension = os.path.splitext(str(file))[-1].lower()
+        print("extention>>>>>>>>>>>>>>>>>>",extension)
         if extension == ".docx":
-
-            doc = Document(file)
+            try:
+                doc = Document(file)
+            except Exception as e:
+                return Response({"file":"File is Corrupted or ".format(e)},status=status.HTTP_400_BAD_REQUEST)
             prop = doc.core_properties
             
             author=prop.author
@@ -96,10 +100,10 @@ class UploadFile(generics.GenericAPIView):
                 return Response({"Author": "{} does not have author ".format(file)}, status=status.HTTP_400_BAD_REQUEST)
             full_path = "documents/" + urllib.parse.quote(file.name.replace(" ", "-"), safe="")
             
-            file_obj= FileUpload()
+            file_obj= File()
             file = default_storage.save(full_path,file)
             file_obj.author=author
-            file_obj.year=datetime
+            file_obj.created_at=datetime
             file_obj.file=file
             file_obj.word_count=word_count
             file_obj.save()
@@ -110,7 +114,7 @@ class UploadFile(generics.GenericAPIView):
                        "path": file_obj.file.name,
                        'author':file_obj.author,
                        'id': file_obj.id,
-                       "year":file_obj.year,
+                       "created_at":file_obj.created_at,
                        'word_count':file_obj.word_count
                        }
             
@@ -127,13 +131,17 @@ class DocumentCheck(generics.GenericAPIView):
     authentication_classes = []
     permission_classes = []
     def post(self, request):
-        file = request.data.get("id")
+        file = request.data.get("file_id")
+        if file is None or file==[]:
+            return Response("Please Select the File",status=status.HTTP_400_BAD_REQUEST)
         author = request.data.get("author")
+        if author is None or author=="":
+            return Response("Please Select the Author",status=status.HTTP_400_BAD_REQUEST)
         print('id',author)
-        task_obj = Task()
-        task_obj.status = 'Files Submitted'
-        task_obj.save()
-        print("obj>>>>>>>",task_obj)
+        # task_obj = Task()
+        # task_obj.status = 'Files Submitted'
+        # task_obj.save()
+        # print("obj>>>>>>>",task_obj)
         
         similaritycheck.delay(file=file,author=author)
         # similaritycheck.delay(file=file)
@@ -145,7 +153,7 @@ class DocumentCheck(generics.GenericAPIView):
         author =self.request.query_params.get("author", None)
         print(author)
         if author:
-            queryset = FileUpload.objects.filter(author=author) 
+            queryset = File.objects.filter(author=author) 
             data_dict = build_data(queryset)
             if data_dict:
                 return Response(data_dict, status=status.HTTP_200_OK)

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'django_celery_beat',
     'documentchecker',
+    'solo',
 ]
 
 MIDDLEWARE = [
