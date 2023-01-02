@@ -1,13 +1,14 @@
 from django.shortcuts import render
 import urllib.parse
 import os
+import re
 from dateutil import parser
 from django.core.files.storage import default_storage
 from rest_framework import generics, permissions, status
 from rest_framework.response import Response
 from docx import Document
 from .models import FileUpload, Threshold,Task
-from .tasks import threshold,similaritycheck
+from .tasks import similaritycheck
 from django.db.models import Sum
 
 # Create your views here.
@@ -54,6 +55,19 @@ def build_data(queryset):
     return data_dict
 
 
+def words_count(file):
+    
+    doc=Document(file)
+    prop = doc.core_properties
+    # print(dir(prop))
+    fullText = []
+    for para in doc.paragraphs:
+        fullText.append(para.text)
+    text='\n'.join(fullText)
+    rj1=re.sub(r'^$\n', '',text, flags=re.MULTILINE)
+    return(len(re.findall(r'\w+',rj1)))
+
+
 class UploadFile(generics.GenericAPIView):
     authentication_classes = []
     permission_classes = []
@@ -72,9 +86,10 @@ class UploadFile(generics.GenericAPIView):
             
             author=prop.author
             year=prop.created
+            word_count=words_count(file)
             print("year>>>>>>>>>>>",year)
             print("year>>>>>>>>>>>",type(year))
-            datetime = parser.parse(year)
+            datetime = parser.parse(str(year))
             if year is None or year=='':
                 return Response({"Year": "File Without Year Not Allowed {}".format(file)}, status=status.HTTP_400_BAD_REQUEST)
             if author is None or author=='':
@@ -86,11 +101,20 @@ class UploadFile(generics.GenericAPIView):
             file_obj.author=author
             file_obj.year=datetime
             file_obj.file=file
+            file_obj.word_count=word_count
             file_obj.save()
             
-            name = str(file)
             url = default_storage.url(file)
-            return Response({"full_url": request.build_absolute_uri(url), "path": name,'author':author,'id': file_obj.id}, status=status.HTTP_200_OK)
+            
+            data_dict={"full_url": request.build_absolute_uri(url), 
+                       "path": file_obj.file.name,
+                       'author':file_obj.author,
+                       'id': file_obj.id,
+                       "year":file_obj.year,
+                       'word_count':file_obj.word_count
+                       }
+            
+            return Response(data_dict, status=status.HTTP_200_OK)
                 
         # elif ext==".doc":
         #     print("hererere")
@@ -103,17 +127,17 @@ class DocumentCheck(generics.GenericAPIView):
     authentication_classes = []
     permission_classes = []
     def post(self, request):
-        
         file = request.data.get("id")
-        print('id',file)
+        author = request.data.get("author")
+        print('id',author)
         task_obj = Task()
         task_obj.status = 'Files Submitted'
         task_obj.save()
         print("obj>>>>>>>",task_obj)
-        similaritycheck.delay(file=file)
         
-        print("celery   call")
-        threshold.delay(file=file, task_id=task_obj.id)
+        similaritycheck.delay(file=file,author=author)
+        # similaritycheck.delay(file=file)
+        
         
         return Response("Files submitted", status=status.HTTP_200_OK)
 

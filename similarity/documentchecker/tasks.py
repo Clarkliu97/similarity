@@ -9,17 +9,6 @@ from itertools import combinations
 
 
 
-def word_count(file):
-    doc=Document(file)
-    prop = doc.core_properties
-    # print(dir(prop))
-    fullText = []
-    for para in doc.paragraphs:
-        fullText.append(para.text)
-    text='\n'.join(fullText)
-    rj1=re.sub(r'^$\n', '',text, flags=re.MULTILINE)
-    return(len(re.findall(r'\w+',rj1)))
-
 def extracttext(file):
     doc=Document(file)
     fullText = []
@@ -29,37 +18,25 @@ def extracttext(file):
     rj1=re.sub(r'^$\n', '',text, flags=re.MULTILINE)
     return rj1
 
-@app.task()
-def threshold(*args, **kwargs):
-    task_id = kwargs['task_id']
-    task_obj = Task.objects.get(id=task_id)
-    
-    file = kwargs['file']
-    info_list=[]
-    try:
-        for id in file:
-            print("list")
-            obj=FileUpload.objects.get(id=id)
-            file=obj.file
-            count_words=word_count(file)
-            obj.word_count= count_words
-            print(obj)
-            obj.save()
-            info_list.append(obj)
-    except Exception as e:
-        task_obj.status = 'Unsuccessful'
-    task_obj.status = 'Documents Processed Successfully'
 
 @app.task()
 def similaritycheck(*args, **kwargs):
+    
     print("similerity")
     threshold_obj = Threshold.objects.filter(active=True).first()
     list_of_id = kwargs['file']
-    list = []
+    print("list_of_id",list_of_id)
+   
+    author     =kwargs['author']
+    print("author",author)
+    objts=FileUpload.objects.filter(author=author,id__in=list_of_id)
+    file_ids = [obj.id for obj in objts]
+    print("author>>>>>>>>>>>",file_ids)
     ignore_list=[]
-    for item in combinations(list_of_id, r = 2):
-        first_id=item[0]
-        second_id=item[1]
+    for item in combinations(file_ids, r = 2):
+        # print('conbinatins')
+        # first_id=item[0]
+        # second_id=item[1]
         try:
             first_obj=FileUpload.objects.get(id=item[0])
         except FileUpload.DoesNotExist:
@@ -75,7 +52,11 @@ def similaritycheck(*args, **kwargs):
             pass
         else:
             ignore_list.append(item)
-    print('delete_list',ignore_list)
+        
+    for id in ignore_list:
+        print(id[0])
+        print(id[1])
+
         
             
         
