@@ -1,11 +1,13 @@
 # python==3.7
-django==3.2.13
-djangorestframework==3.13.1
+django==4.1.5
+djangorestframework==3.14.0
 django-debug-toolbar==3.8.1
 docx==0.2.4
-celery==5.2.6
-django-celery-beat==2.2.1
-django_redis==5.0.0
+celery==5.2.7
+django-celery-beat==2.4.0
+django_redis==5.2.0
 django-cors-headers==3.13.0
 thefuzz==0.19.0
-# convertapi==1.5.0
+olefile==0.46
+solo-python==0.1.1
+textract==1.6.5 
