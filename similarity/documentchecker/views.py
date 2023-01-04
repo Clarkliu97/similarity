@@ -7,8 +7,11 @@ from docx import Document
 from .models import SimilarityCheck,Progress
 from .tasks import similaritycheck
 from .serializers import SimilarityCheckSerialiazer,FileSerializer,ProgressSerialiazer
-
+from django.shortcuts import render
 # Create your views here.
+
+def index(request):
+    return render(request, 'index.html')
 
 
 def words_count(docText):
