@@ -21,7 +21,7 @@ from django.urls import path,include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('documentchecker/', include('documentchecker.urls')),
+    path('api/documentchecker/', include('documentchecker.urls')),
 ]
 
 
@@ -32,7 +32,7 @@ urlpatterns = [
 #     urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 #     urlpatterns = urlpatterns + [path('__debug__/', include(debug_toolbar.urls))]
 
-# # react routes
+# react routes
 # urlpatterns += [url(r'app/^(?:.*)/?$', index, name='index1')]
 # urlpatterns += [url('app/', index, name='index1')]
-# # urlpatterns += [url('', index, name='index1')]
+# urlpatterns += [url('', index, name='index1')]
