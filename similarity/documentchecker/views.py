@@ -4,7 +4,7 @@ from dateutil import parser
 from rest_framework import generics, status
 from rest_framework.response import Response
 from docx import Document
-from .models import SimilarityCheck,Progress
+from .models import SimilarityCheck,Progress,File
 from .tasks import similaritycheck
 from .serializers import SimilarityCheckSerialiazer,FileSerializer,ProgressSerialiazer
 from django.shortcuts import render
@@ -91,7 +91,7 @@ class DocumentCheck(generics.RetrieveAPIView, generics.GenericAPIView):
             return Response("Please Select the Author",status=status.HTTP_400_BAD_REQUEST)
         
         
-        objts=SimilarityCheck.objects.filter(file__author=author,file__id__in=file)
+        objts=objts=File.objects.filter(author=author,id__in=file)
         if len(objts)<=1:
             return Response({"file":"Select atleast two files for {}".format(author)},status=status.HTTP_400_BAD_REQUEST)
         progress_obj=Progress()
