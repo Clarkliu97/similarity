@@ -8,4 +8,6 @@ urlpatterns = [
     path('document/',                        DocumentCheck.as_view(),                  name='dacument_similerity-view'),
     path('task/<int:id>/',                            DocumentCheck.as_view(),            name='similerity-detail-view'),
     path('progress/<int:task>/',                            ProgressView.as_view(),            name='Progress-detail-view'),
+    path('complete/<int:task>/',                            ProgressView.as_view(),            name='Progress-detail-view'),
+    
 ]
