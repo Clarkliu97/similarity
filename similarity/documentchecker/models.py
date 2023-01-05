@@ -52,3 +52,14 @@ class Progress(models.Model):
     def __str__(self) -> str:
         return self.status
     
+    
+def setup_threshold():
+    try:
+            try:
+                obj, created = Threshold.objects.get_or_create(
+                    min_file=5, similarity_score=70)
+            except Exception as e:
+                print("Exception", e)
+                pass
+    except Exception as e:
+        print("exception in permission creation", e)
