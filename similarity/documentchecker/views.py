@@ -70,7 +70,7 @@ class UploadFile(generics.GenericAPIView):
             return Response(data_dict, status=status.HTTP_200_OK)
          
         else:
-            return Response("File Not Valid", status=status.HTTP_400_BAD_REQUEST)
+            return Response({"file":"File Not Valid"}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class DocumentCheck(generics.RetrieveAPIView, generics.GenericAPIView):
