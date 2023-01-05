@@ -115,6 +115,7 @@ def similaritycheck(*args, **kwargs):
         data_dict['file_count'] = file_per_year
         word_count_per_year = year_querset.aggregate(words_count=Sum('word_count'))
         data_dict['word_count'] = word_count_per_year['words_count']
+        data_dict["file_ids"]=unique_files_id
         year_info_list.append(data_dict)
         
     
