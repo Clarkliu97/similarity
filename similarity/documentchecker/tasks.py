@@ -43,7 +43,6 @@ def extracttext(file):
 def similaritycheck(*args, **kwargs):
     id = kwargs['id']
     prog_id=kwargs['progress_id']
-    print("prog_id",id)
     similarity_obj=SimilarityCheck.objects.get(id=id)
     progress_obj=Progress.objects.get(id=prog_id)
     # progress_obj.task=similarity_obj
@@ -97,7 +96,6 @@ def similaritycheck(*args, **kwargs):
         
     unique_files_id = remove_duplicate_files(pass_list)
     unique_files_id= list(set(unique_files_id)) 
-    print("last",unique_files_id)
     
     progress_obj.threshold=config.min_file
     progress_obj.save()
@@ -122,7 +120,6 @@ def similaritycheck(*args, **kwargs):
     
     similarity_obj.year_info= year_info_list
     similarity_obj.save()
-    print("year",similarity_obj.year_info)
     if progress_obj.progress==100.0:
         
         if unique_files_id:
