@@ -83,12 +83,17 @@ class DocumentCheck(generics.RetrieveAPIView, generics.GenericAPIView):
     def post(self, request):
         file = request.data.get("file_id")
         if len(file) < 2:
-            return Response({"file":"Select more files"},status=status.HTTP_400_BAD_REQUEST)
+            return Response({"file":"Add more files"},status=status.HTTP_400_BAD_REQUEST)
         if file is None or file==[]:
             return Response({"file":"Select atleast two file"},status=status.HTTP_400_BAD_REQUEST)
         author = request.data.get("author")
         if author is None or author=="":
             return Response("Please Select the Author",status=status.HTTP_400_BAD_REQUEST)
+        
+        
+        objts=SimilarityCheck.objects.filter(file__author=author,file__id__in=file)
+        if len(objts)<=1:
+            return Response({"file":"Select atleast two files for {}".format(author)},status=status.HTTP_400_BAD_REQUEST)
         progress_obj=Progress()
         progress_obj.status='Started'
         SimilarityCheck_obj=SimilarityCheck()
