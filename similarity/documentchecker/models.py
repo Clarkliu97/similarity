@@ -3,6 +3,7 @@ from solo.models import SingletonModel
 # Create your models here.
 
 report_choices = [
+    ('Started', 'Started'),
     ('Complete', 'Complete'),
     ('Failed', 'Failed'),
     ('Inprogress', 'Inprogress'),]
@@ -41,11 +42,11 @@ class SimilarityCheck(models.Model):
         return self.author
 
 class Progress(models.Model):
-    completed_file   =    models.IntegerField(default=0)
-    progress         =    models.FloatField(default=0)
-    complete         =    models.BooleanField(default=False)
-    threshold        =    models.IntegerField(default=0)
-    task             =    models.ForeignKey(SimilarityCheck, on_delete=models.CASCADE ) 
+    completed_file   =    models.IntegerField(default=0, blank=True)
+    progress         =    models.FloatField(default=0, blank=True)
+    complete         =    models.BooleanField(default=False, blank=True)
+    threshold        =    models.IntegerField(default=0, blank=True)
+    task             =    models.ForeignKey(SimilarityCheck, on_delete=models.CASCADE , blank=True) 
     status           =    models.CharField(max_length=100, choices=report_choices, null=True, blank=True)
     
     def __str__(self) -> str:
