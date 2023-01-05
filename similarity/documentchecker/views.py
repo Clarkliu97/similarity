@@ -68,7 +68,7 @@ class UploadFile(generics.GenericAPIView):
                 serializer.save()
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
             return Response(data_dict, status=status.HTTP_200_OK)
-       
+         
         else:
             return Response("File Not Valid", status=status.HTTP_400_BAD_REQUEST)
 
@@ -83,16 +83,20 @@ class DocumentCheck(generics.RetrieveAPIView, generics.GenericAPIView):
     def post(self, request):
         file = request.data.get("file_id")
         if len(file) < 2:
-            return Response("Select more files",status=status.HTTP_400_BAD_REQUEST)
+            return Response({"file":"Select more files"},status=status.HTTP_400_BAD_REQUEST)
         if file is None or file==[]:
-            return Response("Select atleast two file",status=status.HTTP_400_BAD_REQUEST)
+            return Response({"file":"Select atleast two file"},status=status.HTTP_400_BAD_REQUEST)
         author = request.data.get("author")
         if author is None or author=="":
             return Response("Please Select the Author",status=status.HTTP_400_BAD_REQUEST)
+        progress_obj=Progress()
+        progress_obj.status='Started'
         SimilarityCheck_obj=SimilarityCheck()
         SimilarityCheck_obj.author=author
         SimilarityCheck_obj.save()
-        similaritycheck.delay(file=file,author=author,id=SimilarityCheck_obj.id)
+        progress_obj.task=SimilarityCheck_obj
+        progress_obj.save()
+        similaritycheck.delay(file=file,author=author,id=SimilarityCheck_obj.id,progress_id=progress_obj.id)
         
         return Response({"task_id":SimilarityCheck_obj.id },status=status.HTTP_200_OK)
 
@@ -100,7 +104,7 @@ class DocumentCheck(generics.RetrieveAPIView, generics.GenericAPIView):
         return self.retrieve(request, *args, **kwargs)
   
   
-class ProgressView(generics.RetrieveAPIView):
+class ProgressView(generics.RetrieveAPIView, generics.UpdateAPIView):
     authentication_classes = []
     permission_classes = []
     serializer_class = ProgressSerialiazer
@@ -109,3 +113,6 @@ class ProgressView(generics.RetrieveAPIView):
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
+
+    def patch(self, request, *args, **kwargs):
+        return self.partial_update(request, *args, **kwargs)
