@@ -60,7 +60,7 @@ def similaritycheck(*args, **kwargs):
     similarity_obj.save()
     
     try:
-        config = Threshold.objects.get()
+        config = Threshold.get_solo()
         # add threshold in object
         similarity_obj.threshold_file=config.min_file
         similarity_obj.threshold_similarity=config.similarity_score
@@ -69,6 +69,8 @@ def similaritycheck(*args, **kwargs):
     except Threshold.DoesNotExist:
         similarity_obj.status = "Failed"
         similarity_obj.error = "threshold_not_found"
+        similarity_obj.save()
+
         return None        
         
     

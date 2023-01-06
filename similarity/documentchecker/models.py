@@ -64,6 +64,11 @@ class SingletonModel(models.Model):
     def delete(self, *args, **kwargs):
         super(SingletonModel, self).delete(*args, **kwargs)
 
+    @classmethod
+    def get_solo(cls):
+        obj, created = cls.objects.get_or_create(pk=cls.singleton_instance_id)
+        return obj
+
 class Threshold(SingletonModel):
     min_file        =   models.IntegerField(default=5)
     similarity_score  =   models.IntegerField(default=70)
