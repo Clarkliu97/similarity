@@ -44,7 +44,6 @@ class UploadFile(generics.ListAPIView,generics.GenericAPIView):
     def post(self, request):
         
         file = request.data.get("file", None)
-        print(type(file))
         if file is None or file=='':
             return Response({"file": "file is required"}, status=status.HTTP_400_BAD_REQUEST)
         
@@ -81,6 +80,8 @@ class UploadFile(generics.ListAPIView,generics.GenericAPIView):
         except Exception as e:
             return Response({"file":"date formate {} ".format(e)},status=status.HTTP_400_BAD_REQUEST)
 
+        if int(word_count) == 0:
+            return Response({'file': 'file without words not allowed {}'.format(file)}, status=status.HTTP_400_BAD_REQUEST)
             
             
         data_dict={"file": file, 
