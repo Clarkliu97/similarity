@@ -28,11 +28,9 @@ urlpatterns = [
 ]
 
 
-# + static('media/', document_root=settings.MEDIA_ROOT)
 if settings.DEBUG is True:
     urlpatterns = urlpatterns + static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS)
     urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-urlpatterns += [re_path(r'app/^(?:.*)/?$', index, name='index1')]
-urlpatterns += [re_path('app/', index, name='index1')]
-# urlpatterns += [url('', index, name='index1')]
+urlpatterns += [re_path(r'app/^(?:.*)/?$',index, name='index1')]
+urlpatterns += [re_path('app/',index, name='index1')]

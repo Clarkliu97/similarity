@@ -1,6 +1,6 @@
 from rest_framework import serializers
-from .models import SimilarityCheck,File,Progress
-
+from .models import Task,File
+from rest_framework import status
 
 
 
@@ -16,15 +16,9 @@ class FileSerializer(serializers.ModelSerializer):
         request = self.context.get('request')
         return request.build_absolute_uri(obj.file.url)
         
-class SimilarityCheckSerialiazer(serializers.ModelSerializer):
+class TaskSerialiazer(serializers.ModelSerializer):
     
     class Meta:
-        model=SimilarityCheck
-        fields=['id','file','year_info','author','created_at']
-
-
-
-class ProgressSerialiazer(serializers.ModelSerializer):
-    class Meta:
-        model=Progress
-        fields=['id','completed_file','progress','complete','threshold','task','status']
+        model=Task
+        fields=['id','author','files','year_details','progress','complete','threshold_similarity',
+                'threshold_file','status','error','selected_files','completed_file','created_at','updated_at']

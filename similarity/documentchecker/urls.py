@@ -1,15 +1,14 @@
 from .models import setup_threshold
 from django.urls import path
 
-from .views import (UploadFile,DocumentCheck,ProgressView)
+from .views import (UploadFile,TaskView)
 
 urlpatterns = [
     
-    path('',                                 UploadFile.as_view(),                     name='fileupload-view'),
-    path('document/',                        DocumentCheck.as_view(),                  name='dacument_similerity-view'),
-    path('task/<int:id>/',                            DocumentCheck.as_view(),            name='similerity-detail-view'),
-    path('progress/<int:task>/',                            ProgressView.as_view(),            name='Progress-detail-view'),
-    path('complete/<int:task>/',                            ProgressView.as_view(),            name='Progress-detail-view'),
+    path('file/<int:id>/',                             UploadFile.as_view(),                      name='get-view'),
+    path('file/',                                     UploadFile.as_view(),                      name='fileupload-view'),
+    path('task/',                                     TaskView.as_view(),                        name='dacument_similerity-view'),
+    path('task/<int:id>/',                            TaskView.as_view(),                        name='similerity-detail-view'),
     
 ]
 
