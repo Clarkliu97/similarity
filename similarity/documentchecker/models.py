@@ -46,18 +46,8 @@ class Task(models.Model):
     
     def __str__(self) -> str:
         return self.author
-    
  
         
-
-from django.conf import settings
-try:
-    from django.core.cache import caches
-    get_cache = lambda cache_name: caches[cache_name]
-except ImportError:
-    from django.core.cache import get_cache
-
-from . import solo_settings
 
 DEFAULT_SINGLETON_INSTANCE_ID = 1
 
@@ -70,10 +60,8 @@ class SingletonModel(models.Model):
     def save(self, *args, **kwargs):
         self.pk = self.singleton_instance_id
         super(SingletonModel, self).save(*args, **kwargs)
-        self.set_to_cache()
 
     def delete(self, *args, **kwargs):
-        self.clear_cache()
         super(SingletonModel, self).delete(*args, **kwargs)
 
 class Threshold(SingletonModel):
