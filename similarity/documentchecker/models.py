@@ -26,20 +26,7 @@ class File(models.Model):
     def __str__(self) -> str:
         return self.author
     
-    
-class Threshold(SingletonModel):
-    min_file        =   models.IntegerField(blank=True, null=True)
-    similarity_score  =   models.IntegerField(blank=True, null=True)
-    def __str__(self):
-        return "Threshold"
 
-    class Meta:
-        verbose_name = "Threshold"
-        
-    
-    def delete(self, *args, **kwargs):
-        pass
- 
 
 class Task(models.Model):
     author                      =    models.CharField(blank=True,max_length=100)
@@ -60,14 +47,42 @@ class Task(models.Model):
     def __str__(self) -> str:
         return self.author
     
+ 
+        
+
+from django.conf import settings
+try:
+    from django.core.cache import caches
+    get_cache = lambda cache_name: caches[cache_name]
+except ImportError:
+    from django.core.cache import get_cache
+
+from . import solo_settings
+
+DEFAULT_SINGLETON_INSTANCE_ID = 1
+
+class SingletonModel(models.Model):
+    singleton_instance_id = DEFAULT_SINGLETON_INSTANCE_ID
+
+    class Meta:
+        abstract = True
+
+    def save(self, *args, **kwargs):
+        self.pk = self.singleton_instance_id
+        super(SingletonModel, self).save(*args, **kwargs)
+        self.set_to_cache()
+
+    def delete(self, *args, **kwargs):
+        self.clear_cache()
+        super(SingletonModel, self).delete(*args, **kwargs)
+
+class Threshold(SingletonModel):
+    min_file        =   models.IntegerField(default=5)
+    similarity_score  =   models.IntegerField(default=70)
     
-def setup_threshold():
-    try:
-            try:
-                obj, created = Threshold.objects.get_or_create(
-                    min_file=5, similarity_score=70)
-            except Exception as e:
-                print("Exception", e)
-                pass
-    except Exception as e:
-        print("exception in permission creation", e)
+    def __str__(self):
+        return "App Configuration"
+
+    class Meta:
+        verbose_name = "App Configuration"
+        

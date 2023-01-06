@@ -1,4 +1,3 @@
-from .models import setup_threshold
 from django.urls import path
 
 from .views import (UploadFile,TaskView)
@@ -12,5 +11,3 @@ urlpatterns = [
     
 ]
 
-
-setup_threshold()

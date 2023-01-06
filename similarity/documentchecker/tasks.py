@@ -1,6 +1,6 @@
 from similarity.celery import app
 import os
-from .models import File,Threshold,Task
+from .models import File,Task,Threshold
 from thefuzz import fuzz
 from docx import Document
 from django.db.models import Sum
