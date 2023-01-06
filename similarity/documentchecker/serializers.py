@@ -1,6 +1,5 @@
 from rest_framework import serializers
 from .models import Task,File
-from rest_framework import status
 
 
 
