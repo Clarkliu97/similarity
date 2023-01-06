@@ -3,8 +3,6 @@ from .models import File,Task, Threshold, DEFAULT_SINGLETON_INSTANCE_ID
 # Register your models here.
 
 class SingletonModelAdmin(admin.ModelAdmin):
-    object_history_template = "admin/solo/object_history.html"
-    change_form_template = "admin/solo/change_form.html"
 
     def has_add_permission(self, request):
         return False
@@ -18,8 +16,14 @@ class SingletonModelAdmin(admin.ModelAdmin):
         return getattr(self.model, 'singleton_instance_id', DEFAULT_SINGLETON_INSTANCE_ID)
 
 
+class TaskAdmin(admin.ModelAdmin):
+    list_display = ['id', 'author', 'complete', 'completed_file', 'created_at']
+    list_filter= ['complete']
 
+class FileAdmin(admin.ModelAdmin):
+    list_display = ['id', 'author', 'word_count', 'created_at']
+    list_filter= ['author']
 
-admin.site.register(File)
-admin.site.register(Task)
+admin.site.register(File, FileAdmin)
+admin.site.register(Task, TaskAdmin)
 admin.site.register(Threshold, SingletonModelAdmin)
