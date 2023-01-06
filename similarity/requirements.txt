@@ -4,7 +4,6 @@ djangorestframework==3.12.2
 django-cors-headers==3.4.0
 celery==5.2.7
 django-celery-beat==2.4.0
-django-solo==2.0.0
 docx==0.2.4
 python-docx==0.8.11
 thefuzz==0.19.0
