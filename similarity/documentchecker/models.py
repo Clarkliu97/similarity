@@ -1,5 +1,7 @@
 from django.db import models
-from solo.models import SingletonModel
+from .utils import extracttext,get_doc_text
+import os
+from django.utils.functional import cached_property
 # Create your models here.
 
 report_choices = [
@@ -24,7 +26,22 @@ class File(models.Model):
 
     
     def __str__(self) -> str:
-        return self.author
+        return "{}-{}-{}".format(self.author,str(self.file.name) , self.created_at)
+    
+    @cached_property
+    def get_doc_text(self):
+        error = False
+        text  = ""
+        try:
+            extension = os.path.splitext(str(self.file.name))[-1].lower()
+            if extension == '.docx':
+                text = extracttext(self.file)
+            elif extension == '.doc':
+                text = get_doc_text(self.file)
+        except Exception as e:
+            error = True
+            text = str(e)
+        return text, error
     
 
 
