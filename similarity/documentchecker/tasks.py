@@ -2,31 +2,7 @@ from similarity.celery import app
 from .models import File,Task,Threshold
 from thefuzz import fuzz
 from django.db.models import Sum
-
-# def remove_duplicate_files(file_ids):
-#     # Create a new list to store the unique files
-#     unique_files = []
-#     main_list=[]
-#     # Iterate over the list of file IDs
-#     for file_id in file_ids:
-#         # Get the file object
-#         file = File.objects.get(pk=file_id)
-
-#         # Check if a file with the same creation time already exists in the unique_files list
-#         duplicate_found = False
-#         for unique_file in unique_files:
-#             if file.created_at == unique_file.created_at:
-#                 duplicate_found = True
-#                 break
-
-#         # If no duplicate was found, add the file to the unique_files list
-#         if not duplicate_found:
-#             unique_files.append(file)
-#             main_list.append(file.id)
-            
-
-    # Return the list of unique files
-    # return main_list
+import re
 
 
 
@@ -73,11 +49,16 @@ def similaritycheck(*args, **kwargs):
         for j in range(0,len(groups)):
             for group_file in groups[j]:
                 text1,error = group_file.get_doc_text
-                text2,error = file_objs[i].get_doc_text
-                inpercentage = fuzz.token_sort_ratio(text1, text2)
-                print("similarity {} -{} - {} - {}".format(str(file_objs[i]),str(group_file),inpercentage, config.similarity_score))
-                if inpercentage > config.similarity_score:
-                    match_group_index = j
+                if error == False:
+                    text2,error = file_objs[i].get_doc_text
+                    inpercentage = fuzz.token_sort_ratio(text1, text2)
+                    if inpercentage > config.similarity_score:
+                        match_group_index = j
+                        break
+                else:
+                    similarity_obj.status = "Failed"
+                    similarity_obj.error = text1
+                    similarity_obj.save()
                     break
             if match_group_index != -1:
                 break
@@ -89,7 +70,6 @@ def similaritycheck(*args, **kwargs):
             #append with existing group
             groups[match_group_index].append(file_objs[i])
         
-        print("groups" , groups)
         
         progress=round(i/len(file_objs),1) * 100
         similarity_obj.progress=progress
@@ -104,7 +84,6 @@ def similaritycheck(*args, **kwargs):
         group.sort(key=lambda x: x.created_at, reverse=False)
         unique_files_id.append(group[0].id)
     
-    print("unique file ids", unique_files_id)
 
     # get uniques_object
     year_objects=File.objects.filter(author=author,id__in=unique_files_id)
