@@ -68,7 +68,10 @@ class UploadFile(generics.ListAPIView,generics.GenericAPIView):
             metadata = ole.get_metadata()
             creation_date=metadata.create_time
             author=metadata.author
-            author=author.decode("utf-8") 
+            if author != None and author == '':
+                author=author.decode("utf-8") 
+            else:
+                author=None
             text = get_doc_text(file)
             word_count=words_count(text)
 

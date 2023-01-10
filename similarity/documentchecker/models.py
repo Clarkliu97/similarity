@@ -2,6 +2,8 @@ from django.db import models
 from .utils import extracttext,get_doc_text
 import os
 from django.utils.functional import cached_property
+from django.core.validators import MaxValueValidator, MinValueValidator
+
 # Create your models here.
 
 report_choices = [
@@ -10,11 +12,11 @@ report_choices = [
     ('Inprogress', 'Inprogress'),]
 
 error_choices = [
-    ("file_not_found","File not found"),
-    ("no_file_with_unique_content","No file with unique content"),
-    ("unknown_file_extension","Unknown file extension"),
-    ("unknown_author","Unknown author"),
-    ("threshold_not_found","Threshold not found")
+    ("1","File not found"),
+    ("2","No file with unique content"),
+    ("3","Unknown author"),
+    ("4","Threshold not found"),
+    ("5","Error in file"),
 ]
 
 
@@ -88,7 +90,7 @@ class SingletonModel(models.Model):
 
 class Threshold(SingletonModel):
     min_file        =   models.IntegerField(default=5)
-    similarity_score  =   models.IntegerField(default=70)
+    similarity_score  =   models.IntegerField(default=70 ,validators=[MaxValueValidator(100),MinValueValidator(1)])
     
     def __str__(self):
         return "App Configuration"
