@@ -2,27 +2,7 @@ from similarity.celery import app
 from .models import File,Task,Threshold
 from thefuzz import fuzz
 from django.db.models import Sum
-import re
-import spacy
-nlp=spacy.load("en_core_web_lg")
-nlp.max_length = 10000000 
-from gensim.parsing.preprocessing import remove_stopwords
 
-def remove_stop_words(text):
-    #  "nlp" Object is used to create documents with linguistic annotations.
-    my_doc = nlp(text)
-    # Create list of word tokens
-    token_list = []
-    for token in my_doc:
-        token_list.append(token.text)
-    # Create list of word tokens after removing stopwords
-    filtered_sentence =[]
-    for word in token_list:
-        lexeme = nlp.vocab[word]
-        if lexeme.is_stop == False:
-            filtered_sentence.append(word)
-    filtered_text = (" ").join(filtered_sentence)
-    return filtered_text
 
 @app.task()
 def similaritycheck(*args, **kwargs):
@@ -67,12 +47,8 @@ def similaritycheck(*args, **kwargs):
         match_group_index = -1
         for j in range(0,len(groups)):
             for group_file in groups[j]:
-                
-                text1,error1 = group_file.get_doc_text
-                text1 = remove_stop_words(text1)
-                # print("error",error)
-                text2,error2 = file_objs[i].get_doc_text
-                text2 = remove_stop_words(text2)
+                text1,error1 = group_file.clean_text
+                text2,error2 = file_objs[i].clean_text
                 if error1 == False and error2 == False:
                     inpercentage = fuzz.token_sort_ratio(text2,text1)
                     print("similarity {} -{} - {} - {}".format(str(file_objs[i]),str(group_file),inpercentage, config.similarity_score))

@@ -3,6 +3,10 @@ from .utils import extracttext,get_doc_text
 import os
 from django.utils.functional import cached_property
 from django.core.validators import MaxValueValidator, MinValueValidator
+import spacy
+
+nlp=spacy.load("en_core_web_lg")
+nlp.max_length = 10000000
 
 # Create your models here.
 
@@ -31,7 +35,7 @@ class File(models.Model):
         return "{}-{}-{}".format(self.author,str(self.file.name) , self.created_at)
     
     @cached_property
-    def get_doc_text(self):
+    def text(self):
         error = False
         text  = ""
         try:
@@ -45,6 +49,30 @@ class File(models.Model):
             text = str(e)
         return text, error
     
+    @cached_property
+    def clean_text(self):
+    #  "nlp" Object is used to create documents with linguistic annotations.
+        error = False
+        text, texterror = self.text
+        if texterror:
+            return text, texterror
+        try:
+            my_doc = nlp(text)
+            # Create list of word tokens
+            token_list = []
+            for token in my_doc:
+                token_list.append(token.text)
+            # Create list of word tokens after removing stopwords
+            filtered_sentence =[]
+            for word in token_list:
+                lexeme = nlp.vocab[word]
+                if lexeme.is_stop == False:
+                    filtered_sentence.append(word)
+            filtered_text = (" ").join(filtered_sentence)
+        except Exception as e:
+            filtered_text = str(e)
+            error = True
+        return filtered_text , error
 
 
 class Task(models.Model):

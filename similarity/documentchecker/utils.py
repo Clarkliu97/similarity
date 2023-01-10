@@ -2,6 +2,7 @@ import os
 import tempfile
 from docx import Document
 
+
 def get_doc_text(file):
     
     tempf, tempfn = tempfile.mkstemp(suffix='.doc')
