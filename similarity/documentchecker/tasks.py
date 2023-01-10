@@ -51,7 +51,7 @@ def similaritycheck(*args, **kwargs):
                 text1,error = group_file.get_doc_text
                 if error == False:
                     text2,error = file_objs[i].get_doc_text
-                    inpercentage = fuzz.token_sort_ratio(text1, text2)
+                    inpercentage = fuzz.token_sort_ratio( text2,text1)
                     if inpercentage > config.similarity_score:
                         match_group_index = j
                         break
@@ -86,7 +86,6 @@ def similaritycheck(*args, **kwargs):
     
 
     # get uniques_object
-    print("unique_files_id",unique_files_id)
     year_objects=File.objects.filter(author=author,id__in=unique_files_id)
     years = [year[0].year for year in year_objects.values_list('created_at')]
     # get distinct_years
