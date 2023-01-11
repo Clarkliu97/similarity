@@ -43,7 +43,6 @@ def similaritycheck(*args, **kwargs):
     #similar files will get grouped together
     groups = []
     for i in range(0, len(file_objs)):
-        print()
         match_group_index = -1
         for j in range(0,len(groups)):
             for group_file in groups[j]:
@@ -51,7 +50,6 @@ def similaritycheck(*args, **kwargs):
                 text2,error2 = file_objs[i].clean_text
                 if error1 == False and error2 == False:
                     inpercentage = fuzz.token_sort_ratio(text2,text1)
-                    print("similarity {} -{} - {} - {}".format(str(file_objs[i]),str(group_file),inpercentage, config.similarity_score))
                     if inpercentage > config.similarity_score:
                         match_group_index = j
                         break
@@ -80,7 +78,6 @@ def similaritycheck(*args, **kwargs):
     similarity_obj.save()
     
     unique_files_id = []
-    print("group",groups)
     for group in groups:
         group.sort(key=lambda x: x.created_at, reverse=False)
         unique_files_id.append(group[0].id)
