@@ -70,9 +70,42 @@ class SingletonModelAdmin(admin.ModelAdmin):
         return getattr(self.model, 'singleton_instance_id', DEFAULT_SINGLETON_INSTANCE_ID)
 
 
+class BaseInline(admin.TabularInline):
+    raw_id_fields = ('file',)
+    fields = ('file', 'file_error')
+    readonly_fields = ('file_error',)
+    extra = 0
+
+    def file_error(self, obj):
+        return obj.file.error
+
+    def has_add_permission(self, request, obj):
+        return False
+
+    def has_delete_permission(self, request, obj):
+        return False
+
+    def has_change_permission(self, request, obj):
+        return False        
+
+class InlineSelectedFiles(BaseInline):
+    model = Task.selected_files.through
+    verbose_name = 'Selected Files'
+    verbose_name_plural = 'Selected Files'
+
+
+class InlineFiles(BaseInline):
+    model = Task.files.through
+    verbose_name = 'Uploaded Files'
+    verbose_name_plural = 'Uploaded Files'    
+
+
 class TaskAdmin(admin.ModelAdmin):
     list_display = ['id', 'authors', 'complete', 'completed_file', 'created_at']
     list_filter= ['complete']
+    exclude = ('files','selected_files')
+    inlines = [InlineSelectedFiles , InlineFiles]
+    
 
 class FileAdmin(admin.ModelAdmin):
     list_display = ['id', 'author', 'word_count', 'created_at']
