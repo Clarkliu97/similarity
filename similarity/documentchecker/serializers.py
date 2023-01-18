@@ -1,28 +1,27 @@
 from rest_framework import serializers
-from .models import Task,File
+from .models import Task, File
 import os
 from docx import Document
 from dateutil import parser
 import olefile
 import re
-import json
 
 
 class FileSerializer(serializers.ModelSerializer):
-    full_url=serializers.SerializerMethodField(read_only=True)
-    file_name=serializers.CharField(read_only=True,source='file.name')
+    full_url = serializers.SerializerMethodField(read_only=True)
+    file_name = serializers.CharField(read_only=True, source='file.name')
+
     class Meta:
         model = File
-        fields = ["id", "file",'author','created_at','word_count','full_url','file_name', 'error','is_error']
+        fields = ["id", "file", 'author', 'created_at', 'word_count', 'full_url', 'file_name', 'error', 'is_error']
         extra_kwargs = {
             'word_count': {'required': False},
             'error': {'required': False}
         }
 
-    def get_full_url(self,obj):
+    def get_full_url(self, obj):
         request = self.context.get('request')
         return request.build_absolute_uri(obj.file.url)
-
 
     def validate(self, attrs):
         file = attrs.get('file', None)
@@ -33,14 +32,14 @@ class FileSerializer(serializers.ModelSerializer):
             'word_count': "",
             'error': None,
             'is_error': False
-        }        
+        }
 
         # get file name without extension
-        file_name =str(file).split('.')[0]
+        file_name = str(file).split('.')[0]
 
         if len(file_name) < 1:
             final_attrs['erorr'] = 0
-            final_attrs['is_error'] = True       
+            final_attrs['is_error'] = True
 
         if file is not None:
             extension = os.path.splitext(str(file))[-1].lower()
@@ -52,8 +51,9 @@ class FileSerializer(serializers.ModelSerializer):
                 try:
                     doc = Document(file)
                 except Exception as e:
-                    final_attrs['error'] = 1 
-                    final_attrs['is_error'] = True       
+                    print(e)
+                    final_attrs['error'] = 1
+                    final_attrs['is_error'] = True
 
                     return final_attrs
                     # return Response({"file":"File is Corrupted ".format(e)},status=status.HTTP_400_BAD_REQUEST)
@@ -62,69 +62,70 @@ class FileSerializer(serializers.ModelSerializer):
                     prop = doc.core_properties
 
                 if prop is not None:
-                    author=prop.author
-                    creation_date=prop.created
-                word_count=words_count(docText)
+                    author = prop.author
+                    creation_date = prop.created
+                word_count = words_count(docText)
 
-            elif extension=='.doc':
+            elif extension == '.doc':
                 ole = olefile.OleFileIO(file)
                 metadata = ole.get_metadata()
-                creation_date=metadata.create_time
-                author=metadata.author
-                if author != None and author == '':
-                    author=author.decode("utf-8") 
-                    
+                creation_date = metadata.create_time
+                author = metadata.author
+                if author is not None and author == '':
+                    author = author.decode("utf-8")
+
                 text = get_doc_text(file)
-                word_count=words_count(text)
+                word_count = words_count(text)
 
             else:
                 final_attrs['error'] = 2
-                final_attrs['is_error'] = True 
+                final_attrs['is_error'] = True
                 return final_attrs
 
-
-            if creation_date is None or creation_date=='':
-                final_attrs['error'] = 3 
-                final_attrs['is_error'] = True 
-                return final_attrs                    
+            if creation_date is None or creation_date == '':
+                final_attrs['error'] = 3
+                final_attrs['is_error'] = True
+                return final_attrs
                 # return Response({"Year": "File Without Year Not Allowed {}".format(file)}, status=status.HTTP_400_BAD_REQUEST)
             try:
                 datetime = parser.parse(str(creation_date))
             except Exception as e:
+                print(e)
                 final_attrs['error'] = 4
-                final_attrs['is_error'] = True 
-                return final_attrs                
+                final_attrs['is_error'] = True
+                return final_attrs
                 # return Response({"file":"date formate {} ".format(e)},status=status.HTTP_400_BAD_REQUEST)
 
             if int(word_count) == 0:
                 final_attrs['error'] = 5
-                final_attrs['is_error'] = True 
-                return final_attrs                    
+                final_attrs['is_error'] = True
+                return final_attrs
                 # return Response({'file': 'file without words not allowed {}'.format(file)}, status=status.HTTP_400_BAD_REQUEST)
-            if author is None or author=='':
+            if author is None or author == '':
                 final_attrs['error'] = 6
-                final_attrs['is_error'] = True 
-                return final_attrs                    
+                final_attrs['is_error'] = True
+                return final_attrs
                 # return Response({"Author": "{} does not have author ".format(file)}, status=status.HTTP_400_BAD_REQUEST)
 
-            final_attrs["file"]= file
-            final_attrs["author"]=author
-            final_attrs["created_at"]=datetime
-            final_attrs["word_count"]=word_count
+            final_attrs["file"] = file
+            final_attrs["author"] = author
+            final_attrs["created_at"] = datetime
+            final_attrs["word_count"] = word_count
 
             return final_attrs
 
 
 class TaskSerialiazer(serializers.ModelSerializer):
-    
+
     class Meta:
-        model=Task
-        fields=['id','authors','files','year_details','progress','complete','threshold_similarity',
-                'threshold_file','status','error','selected_files','completed_file','created_at','updated_at']
+        model = Task
+        fields = ['id', 'authors', 'files', 'year_details', 'progress', 'complete', 'threshold_similarity',
+                  'threshold_file', 'status', 'error', 'selected_files', 'completed_file', 'created_at', 'updated_at']
 
 
 def words_count(docText):
-    return(len(re.findall(r'\w+',docText)))
+    return (len(re.findall(r'\w+', docText)))
+
 
 def get_doc_text(file):
     import tempfile
@@ -135,5 +136,5 @@ def get_doc_text(file):
     cmd = ['antiword', tempfn]
     p = Popen(cmd, stdout=PIPE)
     stdout, _ = p.communicate()
-    text =  stdout.decode('ascii', 'ignore')
+    text = stdout.decode('ascii', 'ignore')
     return text

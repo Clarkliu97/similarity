@@ -5,30 +5,28 @@ from django.utils.functional import cached_property
 from django.core.validators import MaxValueValidator, MinValueValidator
 import spacy
 
-nlp=spacy.load("en_core_web_lg")
-nlp.max_length = 10000000
+# nlp = spacy.load("en_core_web_lg")
+# nlp.max_length = 10000000
 
 # Create your models here.
 
 
-
-
 class File(models.Model):
-    file                  = models.FileField(upload_to='documenmt/')
-    author                = models.CharField(max_length=90,null=True,blank=True)
-    created_at            = models.DateTimeField(blank=True,null=True)
-    word_count            = models.CharField(max_length=90)
-    error                 = models.CharField(max_length=100, choices=file_error_choices, null=True)
+    file = models.FileField(upload_to='documenmt/')
+    author = models.CharField(max_length=90, null=True, blank=True)
+    created_at = models.DateTimeField(blank=True, null=True)
+    word_count = models.CharField(max_length=90)
+    error = models.CharField(max_length=100, choices=file_error_choices, null=True)
     is_error = models.BooleanField(default=False)
 
-    
     def __str__(self) -> str:
-        return "{}-{}-{}".format(self.author,str(self.file.name) , self.created_at)
-    
+        return "{}-{}-{}".format(self.author, str(self.file.name), self.created_at)
+
+
     @cached_property
     def text(self):
         error = False
-        text  = ""
+        text = ""
         try:
             extension = os.path.splitext(str(self.file.name))[-1].lower()
             if extension == '.docx':
@@ -39,10 +37,10 @@ class File(models.Model):
             error = True
             text = str(e)
         return text, error
-    
+
     @cached_property
     def clean_text(self):
-    #  "nlp" Object is used to create documents with linguistic annotations.
+        #  "nlp" Object is used to create documents with linguistic annotations.
         error = False
         text, texterror = self.text
         if texterror:
@@ -54,40 +52,39 @@ class File(models.Model):
             for token in my_doc:
                 token_list.append(token.text)
             # Create list of word tokens after removing stopwords
-            filtered_sentence =[]
+            filtered_sentence = []
             for word in token_list:
                 lexeme = nlp.vocab[word]
-                if lexeme.is_stop == False:
+                if lexeme.is_stop is False:
                     filtered_sentence.append(word)
             filtered_text = (" ").join(filtered_sentence)
         except Exception as e:
             filtered_text = str(e)
             error = True
-        return filtered_text , error
+        return filtered_text, error
 
 
 class Task(models.Model):
-    authors                     =    models.JSONField(blank=True,null=True)
-    files                       =    models.ManyToManyField(File, blank=True)
-    year_details                =    models.JSONField( null=True, blank=True)
-    progress                    =    models.FloatField(default=0, blank=True)
-    complete                    =    models.BooleanField(default=False, blank=True)
-    threshold_similarity        =    models.IntegerField(default=0, blank=True)
-    threshold_file              =    models.IntegerField(default=0, blank=True)
-    status                      =    models.CharField(max_length=100, choices=report_choices, null=True, blank=True)
-    error                       =    models.CharField(max_length=100, choices=task_error_choices, null=True, blank=True)
-    selected_files              =    models.ManyToManyField(File, related_name='selected_files', blank=True)
-    completed_file              =    models.IntegerField(default=0, blank=True)
-    created_at                  =    models.DateTimeField(auto_now_add=True)
-    updated_at                  =    models.DateTimeField(auto_now_add=True)
-    
-    
+    authors = models.JSONField(blank=True, null=True)
+    files = models.ManyToManyField(File, blank=True)
+    year_details = models.JSONField( null=True, blank=True)
+    progress = models.FloatField(default=0, blank=True)
+    complete = models.BooleanField(default=False, blank=True)
+    threshold_similarity = models.IntegerField(default=0, blank=True)
+    threshold_file = models.IntegerField(default=0, blank=True)
+    status = models.CharField(max_length=100, choices=report_choices, null=True, blank=True)
+    error = models.CharField(max_length=100, choices=task_error_choices, null=True, blank=True)
+    selected_files = models.ManyToManyField(File, related_name='selected_files', blank=True)
+    completed_file = models.IntegerField(default=0, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
+
     def __str__(self) -> str:
         return self.authors
- 
-        
+
 
 DEFAULT_SINGLETON_INSTANCE_ID = 1
+
 
 class SingletonModel(models.Model):
     singleton_instance_id = DEFAULT_SINGLETON_INSTANCE_ID
@@ -107,11 +104,12 @@ class SingletonModel(models.Model):
         obj, created = cls.objects.get_or_create(pk=cls.singleton_instance_id)
         return obj
 
+
 class Threshold(SingletonModel):
     min_year = models.IntegerField(default=1)
     min_files_per_year = models.IntegerField(default=1)
     min_files = models.IntegerField(default=5)
-    similarity_score = models.IntegerField(default=70 ,validators=[MaxValueValidator(100),MinValueValidator(1)])
+    similarity_score = models.IntegerField(default=70, validators=[MaxValueValidator(100), MinValueValidator(1)])
     show_errors = models.BooleanField(default=False)
 
     def __str__(self):
@@ -119,4 +117,3 @@ class Threshold(SingletonModel):
 
     class Meta:
         verbose_name = "App Configuration"
-        

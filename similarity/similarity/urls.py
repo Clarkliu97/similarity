@@ -16,21 +16,25 @@ Including another URLconf
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+
 # from django.conf.urls import url
-from django.urls import include, re_path
-from django.urls import path,include
+from django.urls import include, re_path, path
 from documentchecker.views import index
 
 urlpatterns = [
-    path('', index, name="index"),
-    path('admin/', admin.site.urls),
-    path('api/documentchecker/', include('documentchecker.urls')),
+    path("", index, name="index"),
+    path("admin/", admin.site.urls),
+    path("api/documentchecker/", include("documentchecker.urls")),
 ]
 
 
 if settings.DEBUG is True:
-    urlpatterns = urlpatterns + static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS)
-    urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns = urlpatterns + static(
+        settings.STATIC_URL, document_root=settings.STATICFILES_DIRS
+    )
+    urlpatterns = urlpatterns + static(
+        settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
+    )
 
-urlpatterns += [re_path(r'app/^(?:.*)/?$',index, name='index1')]
-urlpatterns += [re_path('app/',index, name='index1')]
+urlpatterns += [re_path(r"app/^(?:.*)/?$", index, name="index1")]
+urlpatterns += [re_path("app/", index, name="index1")]
