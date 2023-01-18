@@ -31,7 +31,7 @@ class FileSerializer(serializers.ModelSerializer):
             'file': file,
             'author': "",
             'word_count': "",
-            'error': {},
+            'error': None,
             'is_error': False
         }        
 
@@ -39,7 +39,7 @@ class FileSerializer(serializers.ModelSerializer):
         file_name =str(file).split('.')[0]
 
         if len(file_name) < 1:
-            final_attrs['erorr']['name'] = 'File name not valid'
+            final_attrs['erorr'] = 0
             final_attrs['is_error'] = True       
 
         if file is not None:
@@ -52,7 +52,7 @@ class FileSerializer(serializers.ModelSerializer):
                 try:
                     doc = Document(file)
                 except Exception as e:
-                    final_attrs['error']['file'] = "File is corrupted" 
+                    final_attrs['error'] = 1 
                     final_attrs['is_error'] = True       
 
                     return final_attrs
@@ -78,31 +78,31 @@ class FileSerializer(serializers.ModelSerializer):
                 word_count=words_count(text)
 
             else:
-                final_attrs['error']['extension'] = "Invalid file extension"
+                final_attrs['error'] = 2
                 final_attrs['is_error'] = True 
                 return final_attrs
 
 
             if creation_date is None or creation_date=='':
-                final_attrs['error']['creation_date'] = "Creation date not found"
+                final_attrs['error'] = 3 
                 final_attrs['is_error'] = True 
                 return final_attrs                    
                 # return Response({"Year": "File Without Year Not Allowed {}".format(file)}, status=status.HTTP_400_BAD_REQUEST)
             try:
                 datetime = parser.parse(str(creation_date))
             except Exception as e:
-                final_attrs['error']['date_format'] = "Invalid created date format"
+                final_attrs['error'] = 4
                 final_attrs['is_error'] = True 
                 return final_attrs                
                 # return Response({"file":"date formate {} ".format(e)},status=status.HTTP_400_BAD_REQUEST)
 
             if int(word_count) == 0:
-                final_attrs['error']['word_count'] = "No words in file"
+                final_attrs['error'] = 5
                 final_attrs['is_error'] = True 
                 return final_attrs                    
                 # return Response({'file': 'file without words not allowed {}'.format(file)}, status=status.HTTP_400_BAD_REQUEST)
             if author is None or author=='':
-                final_attrs['error']['author'] = "No author found"
+                final_attrs['error'] = 6
                 final_attrs['is_error'] = True 
                 return final_attrs                    
                 # return Response({"Author": "{} does not have author ".format(file)}, status=status.HTTP_400_BAD_REQUEST)
@@ -111,7 +111,7 @@ class FileSerializer(serializers.ModelSerializer):
             final_attrs["author"]=author
             final_attrs["created_at"]=datetime
             final_attrs["word_count"]=word_count
-        
+
             return final_attrs
 
 

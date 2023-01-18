@@ -19,7 +19,7 @@ def similaritycheck(*args, **kwargs):
    
     except Threshold.DoesNotExist:
         similarity_obj.status = "Failed"
-        similarity_obj.error = "4"
+        similarity_obj.error = 4
         similarity_obj.save()
         return None        
         
@@ -36,7 +36,7 @@ def similaritycheck(*args, **kwargs):
             file_objs.append(i)
     else:
         similarity_obj.status = "Failed"
-        similarity_obj.error = "3"
+        similarity_obj.error = 3
         similarity_obj.save()
         return None
 
@@ -55,7 +55,7 @@ def similaritycheck(*args, **kwargs):
                         break
                 else:
                     similarity_obj.status = "Failed"
-                    similarity_obj.error = "5"
+                    similarity_obj.error = 5
                     similarity_obj.save()
                     break
             if match_group_index != -1:
@@ -117,7 +117,7 @@ def similaritycheck(*args, **kwargs):
                 similarity_obj.save()
         else:
             similarity_obj.status = "Failed"
-            similarity_obj.error = "2"
+            similarity_obj.error = 2
             similarity_obj.save()
     
     if similarity_obj.completed_file == len(unique_files_id):
@@ -126,5 +126,5 @@ def similaritycheck(*args, **kwargs):
     else:
 
         similarity_obj.status='Complete'
-        similarity_obj.error = '1'
+        similarity_obj.error = 1
         similarity_obj.save()

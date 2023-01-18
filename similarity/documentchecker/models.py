@@ -1,5 +1,5 @@
 from django.db import models
-from .utils import extracttext,get_doc_text
+from .utils import extracttext, get_doc_text, file_error_choices, report_choices, task_error_choices
 import os
 from django.utils.functional import cached_property
 from django.core.validators import MaxValueValidator, MinValueValidator
@@ -10,18 +10,7 @@ nlp.max_length = 10000000
 
 # Create your models here.
 
-report_choices = [
-    ('Complete', 'Complete'),
-    ('Failed', 'Failed'),
-    ('Inprogress', 'Inprogress'),]
 
-error_choices = [
-    ("1","File not found"),
-    ("2","No file with unique content"),
-    ("3","Unknown author"),
-    ("4","Threshold not found"),
-    ("5","Error in file"),
-]
 
 
 class File(models.Model):
@@ -29,7 +18,7 @@ class File(models.Model):
     author                = models.CharField(max_length=90,null=True,blank=True)
     created_at            = models.DateTimeField(blank=True,null=True)
     word_count            = models.CharField(max_length=90)
-    error                 = models.JSONField()
+    error                 = models.CharField(max_length=100, choices=file_error_choices, null=True)
     is_error = models.BooleanField(default=False)
 
     
@@ -78,7 +67,7 @@ class File(models.Model):
 
 
 class Task(models.Model):
-    authors                      =    models.JSONField(blank=True,null=True)
+    authors                     =    models.JSONField(blank=True,null=True)
     files                       =    models.ManyToManyField(File, blank=True)
     year_details                =    models.JSONField( null=True, blank=True)
     progress                    =    models.FloatField(default=0, blank=True)
@@ -86,7 +75,7 @@ class Task(models.Model):
     threshold_similarity        =    models.IntegerField(default=0, blank=True)
     threshold_file              =    models.IntegerField(default=0, blank=True)
     status                      =    models.CharField(max_length=100, choices=report_choices, null=True, blank=True)
-    error                       =    models.CharField(max_length=100, choices=error_choices, null=True, blank=True)
+    error                       =    models.CharField(max_length=100, choices=task_error_choices, null=True, blank=True)
     selected_files              =    models.ManyToManyField(File, related_name='selected_files', blank=True)
     completed_file              =    models.IntegerField(default=0, blank=True)
     created_at                  =    models.DateTimeField(auto_now_add=True)
@@ -94,7 +83,7 @@ class Task(models.Model):
     
     
     def __str__(self) -> str:
-        return self.author
+        return self.authors
  
         
 
@@ -123,6 +112,7 @@ class Threshold(SingletonModel):
     min_files_per_year = models.IntegerField(default=1)
     min_files = models.IntegerField(default=5)
     similarity_score = models.IntegerField(default=70 ,validators=[MaxValueValidator(100),MinValueValidator(1)])
+    show_errors = models.BooleanField(default=False)
 
     def __str__(self):
         return "App Configuration"
