@@ -71,7 +71,7 @@ class SingletonModelAdmin(admin.ModelAdmin):
 
 
 class TaskAdmin(admin.ModelAdmin):
-    list_display = ['id', 'author', 'complete', 'completed_file', 'created_at']
+    list_display = ['id', 'authors', 'complete', 'completed_file', 'created_at']
     list_filter= ['complete']
 
 class FileAdmin(admin.ModelAdmin):

@@ -25,10 +25,12 @@ error_choices = [
 
 
 class File(models.Model):
-    file                  =    models.FileField(upload_to='documenmt/')
-    author                =    models.CharField(max_length=90,null=True,blank=True)
+    file                  = models.FileField(upload_to='documenmt/')
+    author                = models.CharField(max_length=90,null=True,blank=True)
     created_at            = models.DateTimeField(blank=True,null=True)
     word_count            = models.CharField(max_length=90)
+    error                 = models.JSONField()
+    is_error = models.BooleanField(default=False)
 
     
     def __str__(self) -> str:
@@ -76,9 +78,9 @@ class File(models.Model):
 
 
 class Task(models.Model):
-    author                      =    models.CharField(blank=True,max_length=100)
-    files                        =    models.ManyToManyField(File, blank=True)
-    year_details                   =    models.JSONField( null=True, blank=True)
+    authors                      =    models.JSONField(blank=True,null=True)
+    files                       =    models.ManyToManyField(File, blank=True)
+    year_details                =    models.JSONField( null=True, blank=True)
     progress                    =    models.FloatField(default=0, blank=True)
     complete                    =    models.BooleanField(default=False, blank=True)
     threshold_similarity        =    models.IntegerField(default=0, blank=True)
@@ -117,9 +119,11 @@ class SingletonModel(models.Model):
         return obj
 
 class Threshold(SingletonModel):
-    min_file        =   models.IntegerField(default=5)
-    similarity_score  =   models.IntegerField(default=70 ,validators=[MaxValueValidator(100),MinValueValidator(1)])
-    
+    min_year = models.IntegerField(default=1)
+    min_files_per_year = models.IntegerField(default=1)
+    min_files = models.IntegerField(default=5)
+    similarity_score = models.IntegerField(default=70 ,validators=[MaxValueValidator(100),MinValueValidator(1)])
+
     def __str__(self):
         return "App Configuration"
 
