@@ -13,7 +13,7 @@ def similaritycheck(*args, **kwargs):
     try:
         config = Threshold.get_solo()
         # add threshold in object
-        similarity_obj.threshold_file=config.min_file
+        similarity_obj.threshold_file=config.min_files
         similarity_obj.threshold_similarity=config.similarity_score
         similarity_obj.save()
    
@@ -25,9 +25,9 @@ def similaritycheck(*args, **kwargs):
         
     
     list_of_id = kwargs['file']
-    author=kwargs['author']
+    authors=kwargs['authors']
     
-    files = File.objects.filter(author=author,id__in=list_of_id)
+    files = File.objects.filter(author__in=authors,id__in=list_of_id, is_error=False)
     file_objs = []
     if files.exists():
         # add file 
@@ -83,8 +83,8 @@ def similaritycheck(*args, **kwargs):
         unique_files_id.append(group[0].id)
     
 
-    # get uniques_object
-    year_objects=File.objects.filter(author=author,id__in=unique_files_id)
+    # get unique_object
+    year_objects=File.objects.filter(author__in=authors,id__in=unique_files_id)
     years = [year[0].year for year in year_objects.values_list('created_at')]
     # get distinct_years
     distinct_years = list(set(years))
@@ -99,6 +99,7 @@ def similaritycheck(*args, **kwargs):
         word_count_per_year = year_querset.aggregate(words_count=Sum('word_count'))
         data_dict['word_count'] = word_count_per_year['words_count']
         data_dict["file_ids"]=[obj.id for obj in year_querset]
+        data_dict['authors']=[obj.author for obj in year_querset]
         year_info_list.append(data_dict)
     
     
