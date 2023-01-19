@@ -20,11 +20,14 @@ from django.conf.urls.static import static
 # from django.conf.urls import url
 from django.urls import include, re_path, path
 from documentchecker.views import index
+from documentchecker.views import ConfigurationsView
 
 urlpatterns = [
     path("", index, name="index"),
     path("admin/", admin.site.urls),
     path("api/documentchecker/", include("documentchecker.urls")),
+    path("api/configurations/", ConfigurationsView.as_view(), name="get-configurations"),
+    
 ]
 
 

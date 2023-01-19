@@ -1,11 +1,10 @@
 from django.urls import path
 
-from .views import UploadFile, TaskView, ConfigurationsView
+from .views import UploadFile, TaskView
 
 urlpatterns = [
     path("file/<int:id>/", UploadFile.as_view(), name="get-view"),
     path("file/", UploadFile.as_view(), name="fileupload-view"),
     path("task/", TaskView.as_view(), name="document-similarity-view"),
     path("task/<int:id>/", TaskView.as_view(), name="similarity-detail-view"),
-    path("configurations/", ConfigurationsView.as_view(), name="get-configurations"),
 ]
