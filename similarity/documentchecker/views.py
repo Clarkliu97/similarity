@@ -61,27 +61,28 @@ class TaskView(
 
     def post(self, request):
         files = request.data.get("file_id")
-        authors = request.data.get("authors")
-        if len(files) < 2:
-            return Response(
-                {"file": "Add more files"}, status=status.HTTP_400_BAD_REQUEST
-            )
-        if files is None or files == []:
-            return Response(
-                {"file": "Select atleast two file"}, status=status.HTTP_400_BAD_REQUEST
-            )
-        if authors is None or len(authors) == 0:
-            return Response(
-                {"author": "Select atleast one author"},
-                status=status.HTTP_400_BAD_REQUEST,
-            )
+        # authors = request.data.get("authors")
+        # if len(files) < 2:
+        #     return Response(
+        #         {"file": "Add more files"}, status=status.HTTP_400_BAD_REQUEST
+        #     )
+        # if files is None or files == []:
+        #     return Response(
+        #         {"file": "Select atleast two file"}, status=status.HTTP_400_BAD_REQUEST
+        #     )
+        # if authors is None or len(authors) == 0:
+        #     return Response(
+        #         {"author": "Select atleast one author"},
+        #         status=status.HTTP_400_BAD_REQUEST,
+        #     )
 
-        objts = File.objects.filter(author__in=authors, id__in=files)
-        if len(objts) <= 1:
-            return Response(
-                {"file": "Select atleast two files for {}".format(authors)},
-                status=status.HTTP_400_BAD_REQUEST,
-            )
+        authors = File.objects.filter(id__in=files).values_list('author', flat=True)
+        authors = list(set(authors))
+        # if len(objts) <= 1:
+        #     return Response(
+        #         {"file": "Select atleast two files for {}".format(authors)},
+        #         status=status.HTTP_400_BAD_REQUEST,
+        #     )
 
         # create and task object
         SimilarityCheck_obj = Task()
@@ -91,32 +92,32 @@ class TaskView(
         # celery task
         similaritycheck.delay(file=files, authors=authors, id=SimilarityCheck_obj.id)
 
-        return Response({"task_id": SimilarityCheck_obj.id}, status=status.HTTP_200_OK)
+        return Response({"file": "Files submitted sucsessfully"}, status=status.HTTP_200_OK)
 
-    def get(self, request, *args, **kwargs):
-        return self.retrieve(request, *args, **kwargs)
+    # def get(self, request, *args, **kwargs):
+    #     return self.retrieve(request, *args, **kwargs)
 
-    def patch(self, request, *args, **kwargs):
-        return self.partial_update(request, *args, **kwargs)
+    # def patch(self, request, *args, **kwargs):
+    #     return self.partial_update(request, *args, **kwargs)
 
-    def update(self, request, *args, **kwargs):
-        partial = kwargs.pop("partial", False)
-        instance = self.get_object()
-        completed_file = instance.completed_file
-        threshold_file = instance.threshold_file
-        if completed_file < threshold_file:
-            return Response(
-                {"file": "upload more file "}, status=status.HTTP_400_BAD_REQUEST
-            )
-        serializer = self.get_serializer(instance, data=request.data, partial=partial)
-        if serializer.is_valid():
-            self.perform_update(serializer)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    # def update(self, request, *args, **kwargs):
+    #     partial = kwargs.pop("partial", False)
+    #     instance = self.get_object()
+    #     completed_file = instance.completed_file
+    #     threshold_file = instance.threshold_file
+    #     if completed_file < threshold_file:
+    #         return Response(
+    #             {"file": "upload more file "}, status=status.HTTP_400_BAD_REQUEST
+    #         )
+    #     serializer = self.get_serializer(instance, data=request.data, partial=partial)
+    #     if serializer.is_valid():
+    #         self.perform_update(serializer)
+    #         return Response(serializer.data, status=status.HTTP_201_CREATED)
+    #     else:
+    #         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class ConfigurationsView(APIView):
     def get(self, request):
         queryset = Threshold.objects.all()
-        return Response(queryset, status=status.HTTP_200_OK)
+        return Response({'threshhold': queryset[0].min_files}, status=status.HTTP_200_OK)
