@@ -120,4 +120,4 @@ class TaskView(
 class ConfigurationsView(APIView):
     def get(self, request):
         queryset = Threshold.objects.all()
-        return Response({'threshhold': queryset[0].min_files}, status=status.HTTP_200_OK)
+        return Response({'threshold': queryset[0].min_files}, status=status.HTTP_200_OK)

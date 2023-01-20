@@ -80,7 +80,7 @@ class Task(models.Model):
     updated_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
-        return self.status
+        return str(self.id)
 
 
 DEFAULT_SINGLETON_INSTANCE_ID = 1
