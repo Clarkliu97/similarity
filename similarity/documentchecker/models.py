@@ -5,8 +5,8 @@ from django.utils.functional import cached_property
 from django.core.validators import MaxValueValidator, MinValueValidator
 import spacy
 
-# nlp = spacy.load("en_core_web_lg")
-# nlp.max_length = 10000000
+nlp = spacy.load("en_core_web_lg")
+nlp.max_length = 10000000
 
 # Create your models here.
 
@@ -80,7 +80,7 @@ class Task(models.Model):
     updated_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
-        return self.authors
+        return self.status
 
 
 DEFAULT_SINGLETON_INSTANCE_ID = 1
@@ -106,11 +106,14 @@ class SingletonModel(models.Model):
 
 
 class Threshold(SingletonModel):
-    min_year = models.IntegerField(default=1)
-    min_files_per_year = models.IntegerField(default=1)
+    min_years = models.IntegerField(default=1)
     min_files = models.IntegerField(default=5)
+    min_words = models.IntegerField(default=300000)
+
+    min_files_per_year = models.IntegerField(default=1)
+    min_words_per_year = models.IntegerField(default=24000)
+
     similarity_score = models.IntegerField(default=70, validators=[MaxValueValidator(100), MinValueValidator(1)])
-    show_errors = models.BooleanField(default=False)
 
     def __str__(self):
         return "App Configuration"
