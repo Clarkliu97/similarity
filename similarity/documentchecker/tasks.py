@@ -24,9 +24,8 @@ def similaritycheck(*args, **kwargs):
         return None
 
     list_of_id = kwargs["file"]
-    authors = kwargs["authors"]
 
-    files = File.objects.filter(author__in=authors, id__in=list_of_id, is_error=False)
+    files = File.objects.filter(id__in=list_of_id, is_error=False)
     file_objs = []
     if files.exists():
         # add file
@@ -81,24 +80,33 @@ def similaritycheck(*args, **kwargs):
         unique_files_id.append(group[0].id)
 
     # get unique_object
-    year_objects = File.objects.filter(author__in=authors, id__in=unique_files_id)
+    year_objects = File.objects.filter(id__in=unique_files_id)
     years = [year[0].year for year in year_objects.values_list("created_at")]
     # get distinct_years
     distinct_years = list(set(years))
     distinct_years = sorted(distinct_years)
     # year info
     year_info_list = []
+    years_count = 0
     for unique_year in distinct_years:
+        years_count += 1
         data_dict = {}
         data_dict["year"] = unique_year
         year_querset = year_objects.filter(created_at__year=unique_year)
         data_dict["file_count"] = year_querset.values_list("file").count()
         word_count_per_year = year_querset.aggregate(words_count=Sum("word_count"))
         data_dict["word_count"] = word_count_per_year["words_count"]
-        data_dict["file_ids"] = [obj.id for obj in year_querset]
-        data_dict["authors"] = [obj.author for obj in year_querset]
+        if int(word_count_per_year["words_count"]) < int(config.min_words_per_year):
+            data_dict["words_status"] = "More words needed"
+        else:
+            data_dict["words_status"] = "Words goal passed"
+        if int(data_dict["file_count"]) < int(config.min_files_per_year):
+            data_dict['files_status'] = "More files needed"
+        else:
+            data_dict['files_status'] = "Files goal passed"
+        # data_dict["file_ids"] = [obj.id for obj in year_querset]
+        # data_dict["authors"] = [obj.author for obj in year_querset]
         year_info_list.append(data_dict)
-
     similarity_obj.year_details = year_info_list
     similarity_obj.save()
 
@@ -117,6 +125,7 @@ def similaritycheck(*args, **kwargs):
             similarity_obj.save()
 
     if similarity_obj.completed_file == len(unique_files_id):
+        similarity_obj.complete = True
         similarity_obj.status = "Complete"
         similarity_obj.save()
     else:

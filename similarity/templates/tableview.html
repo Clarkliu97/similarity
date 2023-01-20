@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+<table>
+    <tr>
+      <th style='text-align:center'>Year</th>
+      <th style='text-align:center'>File Count</th>
+      <th style='text-align:center'>Word Count</th>
+      <th style='text-align:center'>Status</th>
+    </tr>
+    {% for dict in information %}
+    <tr>
+      <td style='text-align:center'>{{dict.year}}</td>
+      <td style='text-align:center'>{{dict.file_count}}</td>
+      <td style='text-align:center'>{{dict.word_count}}</td>
+      <td style='text-align:center'>
+        {{dict.words_status}}</br>
+        {{dict.files_status}}
+      </td>
+    </tr>
+    {% endfor %}
+    <tr><td colspan="4" style='text-align:center'>{{year_status}}</td></tr>
+    <tr>
+      <th style='text-align:center'>Total</th>
+      <td style='text-align:center'>{{total.file_count}}</td>
+      <td style='text-align:center'>{{total.word_count}}</td>
+      <td style='text-align:center'>{{total.total_status}}</td>
+    </tr>
+  </table>
+</body>
+</html>

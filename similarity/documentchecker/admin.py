@@ -2,6 +2,9 @@ from django.contrib import admin
 from .models import File, Task, Threshold, DEFAULT_SINGLETON_INSTANCE_ID
 from django.http import HttpResponseRedirect
 from django.conf.urls import url
+from django.utils.html import format_html
+from django.template.loader import get_template
+from collections import Counter
 
 try:
     from django.utils.encoding import force_unicode
@@ -109,10 +112,51 @@ class InlineFiles(BaseInline):
 
 
 class TaskAdmin(admin.ModelAdmin):
-    list_display = ["id", "authors", "complete", "completed_file", "created_at"]
+    model = Task
+    list_display = ["id", "complete", "completed_file", "created_at"]
     list_filter = ["complete"]
     exclude = ("files", "selected_files")
+    readonly_fields = ("year_details", "authors", "year_detail")
     inlines = [InlineSelectedFiles, InlineFiles]
+
+    def get_total(self, instance):
+
+        config = Threshold.get_solo()
+
+        if instance.year_details:
+            if len(instance.year_details) < int(config.min_years):
+                year_status = "More years needed"
+            else:
+                year_status = None
+
+        counter = Counter()
+        for dict in instance.year_details:
+            counter.update(dict)
+        total_per = round((counter['word_count']/config.min_words)*100, 2)
+        total_dict = {
+            "file_count": counter["file_count"],
+            "word_count": counter["word_count"],
+            "total_status": str(total_per)+"'% ' Goal {} words".format(str(config.min_words))
+        }
+        return total_dict, year_status
+
+    def year_detail(self, instance):
+
+        if instance is not None:
+            data_dict = {"information": instance.year_details}
+
+            total_dict, year_status = self.get_total(instance)
+
+            if year_status:
+                data_dict["year_status"] = year_status
+
+            data_dict['total'] = total_dict
+
+            template = get_template("tableview.html")
+            string = template.render(data_dict)
+            return format_html(string, "Information Table")
+
+    year_detail.allow_tags = True
 
 
 class FileAdmin(admin.ModelAdmin):
