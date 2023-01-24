@@ -18,6 +18,8 @@ def similaritycheck(*args, **kwargs):
         similarity_obj.save()
 
     except Threshold.DoesNotExist:
+        similarity_obj.complete = True
+        
         similarity_obj.status = "Failed"
         similarity_obj.error = 4
         similarity_obj.save()
@@ -33,6 +35,8 @@ def similaritycheck(*args, **kwargs):
             similarity_obj.files.add(i.id)
             file_objs.append(i)
     else:
+        similarity_obj.complete = True
+        
         similarity_obj.status = "Failed"
         similarity_obj.error = 3
         similarity_obj.save()
@@ -52,6 +56,8 @@ def similaritycheck(*args, **kwargs):
                         match_group_index = j
                         break
                 else:
+                    similarity_obj.complete = True
+                    
                     similarity_obj.status = "Failed"
                     similarity_obj.error = 5
                     similarity_obj.save()
@@ -104,8 +110,8 @@ def similaritycheck(*args, **kwargs):
             data_dict['files_status'] = "More files needed"
         else:
             data_dict['files_status'] = "Files goal passed"
-        # data_dict["file_ids"] = [obj.id for obj in year_querset]
-        # data_dict["authors"] = [obj.author for obj in year_querset]
+        data_dict["file_ids"] = [obj.id for obj in year_querset]
+        data_dict["authors"] = [obj.author for obj in year_querset]
         year_info_list.append(data_dict)
     similarity_obj.year_details = year_info_list
     similarity_obj.save()
@@ -120,6 +126,8 @@ def similaritycheck(*args, **kwargs):
                 similarity_obj.completed_file += 1
                 similarity_obj.save()
         else:
+            similarity_obj.complete = True
+            
             similarity_obj.status = "Failed"
             similarity_obj.error = 2
             similarity_obj.save()
@@ -129,6 +137,7 @@ def similaritycheck(*args, **kwargs):
         similarity_obj.status = "Complete"
         similarity_obj.save()
     else:
+        similarity_obj.complete = True
 
         similarity_obj.status = "Complete"
         similarity_obj.error = 1

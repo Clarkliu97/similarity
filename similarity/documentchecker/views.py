@@ -7,7 +7,7 @@ from .serializers import FileSerializer, TaskSerialiazer
 from django.shortcuts import render
 from rest_framework.views import APIView
 from .models import Threshold
-
+import json
 # Create your views here.
 
 
@@ -36,6 +36,7 @@ class UploadFile(generics.ListAPIView, generics.GenericAPIView):
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+        print(serializer.errors)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def get(self, request, *args, **kwargs):
@@ -61,23 +62,23 @@ class TaskView(
 
     def post(self, request):
         files = request.data.get("file_id")
-        # authors = request.data.get("authors")
-        # if len(files) < 2:
-        #     return Response(
-        #         {"file": "Add more files"}, status=status.HTTP_400_BAD_REQUEST
-        #     )
-        # if files is None or files == []:
-        #     return Response(
-        #         {"file": "Select atleast two file"}, status=status.HTTP_400_BAD_REQUEST
-        #     )
-        # if authors is None or len(authors) == 0:
-        #     return Response(
-        #         {"author": "Select atleast one author"},
-        #         status=status.HTTP_400_BAD_REQUEST,
-        #     )
+        authors = request.data.get("authors")
+        if len(files) < 2:
+            return Response(
+                {"file": "Add more files"}, status=status.HTTP_400_BAD_REQUEST
+            )
+        if files is None or files == []:
+            return Response(
+                {"file": "Select atleast two file"}, status=status.HTTP_400_BAD_REQUEST
+            )
+        if authors is None or len(authors) == 0:
+            return Response(
+                {"author": "Select atleast one author"},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
 
-        authors = File.objects.filter(id__in=files).values_list('author', flat=True)
-        authors = list(set(authors))
+        # authors = File.objects.filter(id__in=files).values_list('author', flat=True)
+        # authors = list(set(authors))
         # if len(objts) <= 1:
         #     return Response(
         #         {"file": "Select atleast two files for {}".format(authors)},
@@ -86,16 +87,16 @@ class TaskView(
 
         # create and task object
         SimilarityCheck_obj = Task()
-        SimilarityCheck_obj.authors = authors
+        SimilarityCheck_obj.authors = json.dumps(authors)
         SimilarityCheck_obj.save()
 
         # celery task
         similaritycheck.delay(file=files, authors=authors, id=SimilarityCheck_obj.id)
 
-        return Response({"file": "Files submitted sucsessfully"}, status=status.HTTP_200_OK)
+        return Response({"file": "Files submitted sucsessfully","task_id":SimilarityCheck_obj.id}, status=status.HTTP_200_OK)
 
-    # def get(self, request, *args, **kwargs):
-    #     return self.retrieve(request, *args, **kwargs)
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
 
     # def patch(self, request, *args, **kwargs):
     #     return self.partial_update(request, *args, **kwargs)
@@ -119,5 +120,5 @@ class TaskView(
 
 class ConfigurationsView(APIView):
     def get(self, request):
-        queryset = Threshold.objects.all()
-        return Response({'threshold': queryset[0].min_files}, status=status.HTTP_200_OK)
+        queryset = Threshold.get_solo()
+        return Response({'threshold': queryset.min_files,"show_error":queryset.show_file_error}, status=status.HTTP_200_OK)

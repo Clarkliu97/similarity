@@ -1,10 +1,13 @@
 from rest_framework import serializers
-from .models import Task, File
+from .models import Task, File,Threshold
 import os
 from docx import Document
 from dateutil import parser
 import olefile
 import re
+from rest_framework import status
+from rest_framework.response import Response
+
 
 
 class FileSerializer(serializers.ModelSerializer):
@@ -36,7 +39,7 @@ class FileSerializer(serializers.ModelSerializer):
 
         # get file name without extension
         file_name = str(file).split('.')[0]
-
+        config = Threshold.get_solo()
         if len(file_name) < 1:
             final_attrs['erorr'] = 0
             final_attrs['is_error'] = True
@@ -46,6 +49,8 @@ class FileSerializer(serializers.ModelSerializer):
             doc = None
             prop = None
             author = None
+            creation_date = None
+            word_count = 0
             if extension == ".docx":
 
                 try:
@@ -55,23 +60,24 @@ class FileSerializer(serializers.ModelSerializer):
                     final_attrs['error'] = 1
                     final_attrs['is_error'] = True
 
-                    return final_attrs
-                    # return Response({"file":"File is Corrupted ".format(e)},status=status.HTTP_400_BAD_REQUEST)
+                    # return final_attrs
+                    if config.show_file_error:
+                        raise serializers.ValidationError({"file":"File is Corrupted ".format(e)}, code=status.HTTP_400_BAD_REQUEST) 
                 if doc is not None:
                     docText = '\n\n'.join(paragraph.text for paragraph in doc.paragraphs)
                     prop = doc.core_properties
+                    word_count = words_count(docText)
 
                 if prop is not None:
                     author = prop.author
                     creation_date = prop.created
-                word_count = words_count(docText)
 
             elif extension == '.doc':
                 ole = olefile.OleFileIO(file)
                 metadata = ole.get_metadata()
                 creation_date = metadata.create_time
                 author = metadata.author
-                if author is not None and author == '':
+                if author is not None and author != '':
                     author = author.decode("utf-8")
 
                 text = get_doc_text(file)
@@ -80,36 +86,42 @@ class FileSerializer(serializers.ModelSerializer):
             else:
                 final_attrs['error'] = 2
                 final_attrs['is_error'] = True
-                return final_attrs
+                # return final_attrs
+                if config.show_file_error:
+                    raise serializers.ValidationError({"file": "Invalid file extension {}".format(file)}, code=status.HTTP_400_BAD_REQUEST)
 
             if creation_date is None or creation_date == '':
                 final_attrs['error'] = 3
                 final_attrs['is_error'] = True
-                return final_attrs
-                # return Response({"Year": "File Without Year Not Allowed {}".format(file)}, status=status.HTTP_400_BAD_REQUEST)
+                # return final_attrs
+                if config.show_file_error:
+                    raise serializers.ValidationError({"Year": "File Without Year Not Allowed {}".format(file)}, code=status.HTTP_400_BAD_REQUEST)
             try:
-                datetime = parser.parse(str(creation_date))
+                creation_date = parser.parse(str(creation_date))
             except Exception as e:
                 print(e)
                 final_attrs['error'] = 4
                 final_attrs['is_error'] = True
-                return final_attrs
-                # return Response({"file":"date formate {} ".format(e)},status=status.HTTP_400_BAD_REQUEST)
+                # return final_attrs
+                if config.show_file_error:
+                    raise serializers.ValidationError({"file":"date formate {} ".format(e)}, code=status.HTTP_400_BAD_REQUEST)
 
             if int(word_count) == 0:
                 final_attrs['error'] = 5
                 final_attrs['is_error'] = True
-                return final_attrs
-                # return Response({'file': 'file without words not allowed {}'.format(file)}, status=status.HTTP_400_BAD_REQUEST)
+                # return final_attrs
+                if config.show_file_error:
+                    raise serializers.ValidationError({'file': 'file without words not allowed {}'.format(file)}, code=status.HTTP_400_BAD_REQUEST)
             if author is None or author == '':
                 final_attrs['error'] = 6
                 final_attrs['is_error'] = True
-                return final_attrs
-                # return Response({"Author": "{} does not have author ".format(file)}, status=status.HTTP_400_BAD_REQUEST)
+                # return final_attrs
+                if config.show_file_error:
+                    raise serializers.ValidationError({"Author": "{} does not have author ".format(file)}, code=status.HTTP_400_BAD_REQUEST)
 
             final_attrs["file"] = file
             final_attrs["author"] = author
-            final_attrs["created_at"] = datetime
+            final_attrs["created_at"] = creation_date
             final_attrs["word_count"] = word_count
 
             return final_attrs

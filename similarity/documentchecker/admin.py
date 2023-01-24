@@ -5,7 +5,7 @@ from django.conf.urls import url
 from django.utils.html import format_html
 from django.template.loader import get_template
 from collections import Counter
-
+from .utils import file_error_choices
 try:
     from django.utils.encoding import force_unicode
 except ImportError:
@@ -82,8 +82,7 @@ class SingletonModelAdmin(admin.ModelAdmin):
 
 class BaseInline(admin.TabularInline):
     raw_id_fields = ("file",)
-    fields = ("file", "file_error")
-    readonly_fields = ("file_error",)
+    fields = ("file",)
     extra = 0
 
     def file_error(self, obj):
@@ -160,8 +159,13 @@ class TaskAdmin(admin.ModelAdmin):
 
 
 class FileAdmin(admin.ModelAdmin):
-    list_display = ["id", "author", "word_count", "created_at"]
+    list_display = ["id", "author", "word_count", "get_error","created_at"]
     list_filter = ["author"]
+
+    def get_error(self, instance):
+        if instance.is_error:
+            return file_error_choices[int(instance.error)][1]
+    get_error.short_description = 'Error'
 
 
 admin.site.register(File, FileAdmin)

@@ -112,7 +112,7 @@ class Threshold(SingletonModel):
 
     min_files_per_year = models.IntegerField(default=1)
     min_words_per_year = models.IntegerField(default=24000)
-
+    show_file_error         =models.BooleanField(default=False)
     similarity_score = models.IntegerField(default=70, validators=[MaxValueValidator(100), MinValueValidator(1)])
 
     def __str__(self):
