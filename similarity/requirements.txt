@@ -16,3 +16,7 @@ django-redis==5.0.0
 # pip install -U spacy
 # python -m spacy download en_core_web_lg
 spacy==3.4.4
+
+# for antiword
+# sudo apt-get update
+# sudo apt-get install antiword

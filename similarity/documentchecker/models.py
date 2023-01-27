@@ -12,7 +12,7 @@ nlp.max_length = 10000000
 
 
 class File(models.Model):
-    file = models.FileField(upload_to='documenmt/')
+    file = models.FileField(upload_to='documenmt/', max_length = 500000 )
     author = models.CharField(max_length=90, null=True, blank=True)
     created_at = models.DateTimeField(blank=True, null=True)
     word_count = models.CharField(max_length=90)

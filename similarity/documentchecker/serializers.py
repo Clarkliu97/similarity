@@ -89,7 +89,9 @@ class FileSerializer(serializers.ModelSerializer):
                 # return final_attrs
                 if config.show_file_error:
                     raise serializers.ValidationError({"file": "Invalid file extension {}".format(file)}, code=status.HTTP_400_BAD_REQUEST)
-
+                else:
+                    return None
+                    
             if creation_date is None or creation_date == '':
                 final_attrs['error'] = 3
                 final_attrs['is_error'] = True
