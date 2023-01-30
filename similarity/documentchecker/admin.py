@@ -115,18 +115,17 @@ class TaskAdmin(admin.ModelAdmin):
     list_display = ["id", "complete", "completed_file", "created_at"]
     list_filter = ["complete"]
     exclude = ("files", "selected_files")
-    readonly_fields = ("year_details", "authors", "year_detail")
+    readonly_fields = ("year_details" ,"authors", "year_detail", "similarity_details","similarity_detail")
     inlines = [InlineSelectedFiles, InlineFiles]
 
     def get_total(self, instance):
 
         config = Threshold.get_solo()
 
-        if instance.year_details:
-            if len(instance.year_details) < int(config.min_years):
-                year_status = "More years needed"
-            else:
-                year_status = None
+        if len(instance.year_details) < int(config.min_years):
+            year_status = "More years needed"
+        else:
+            year_status = None
 
         counter = Counter()
         for dict in instance.year_details:
@@ -140,21 +139,33 @@ class TaskAdmin(admin.ModelAdmin):
         return total_dict, year_status
 
     def year_detail(self, instance):
+        year_status = None
+        total_dict = None
 
         if instance is not None:
             data_dict = {"information": instance.year_details}
 
-            total_dict, year_status = self.get_total(instance)
+            if instance.year_details:
+                total_dict, year_status = self.get_total(instance)
 
             if year_status:
                 data_dict["year_status"] = year_status
-
-            data_dict['total'] = total_dict
+            if total_dict:
+                data_dict['total'] = total_dict
 
             template = get_template("tableview.html")
             string = template.render(data_dict)
             return format_html(string, "Information Table")
+        
+        
+    def similarity_detail(self, instance):
 
+        if instance is not None:
+            data_dict = {"information": instance.similarity_details}
+
+            template = get_template("similaritydetail.html")
+            string = template.render(data_dict)
+            return format_html(string, "Information Table")
     year_detail.allow_tags = True
 
 

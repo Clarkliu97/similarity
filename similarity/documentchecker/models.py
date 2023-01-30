@@ -78,7 +78,7 @@ class Task(models.Model):
     completed_file = models.IntegerField(default=0, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
-
+    similarity_details = models.JSONField( null=True, blank=True)
     def __str__(self) -> str:
         return str(self.id)
 
