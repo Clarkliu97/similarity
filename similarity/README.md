@@ -9,13 +9,6 @@
 
 # Create a virtual environment to install dependencies in and activate it:
 ```
-Creat virtual environment using conda.
-
-conda create -n dev python=3.7
-conda activate dev
-
-Creat virtual environment using python .
-
 pip install virtualenv
 virtualenv <project_name>
 source/path/to/venv/bin/activate
@@ -34,7 +27,7 @@ python manage.py migrate
 # Run the django project locally
 
 ```
-./similarity/ python manage.py runserver 0.0.0.0:8000
+python manage.py runserver 0.0.0.0:8000
 ```
 
 
