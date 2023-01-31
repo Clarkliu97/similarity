@@ -11,6 +11,7 @@ olefile==0.46
 # for celery importy error install
 # importlib-metadata==4.8.3
 django-redis==5.0.0
+python-Levenshtein==0.20.9
 
 # pip install -U pip setuptools wheel
 # pip install -U spacy
