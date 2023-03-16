@@ -1,4 +1,4 @@
-from similarity.celery import app
+from similarity.celeryy import app
 from .models import File, Task, Threshold
 from thefuzz import fuzz
 from django.db.models import Sum
