@@ -64,7 +64,7 @@ def main():
     """
     Main function
     """
-    dir_path = 'Single_Functions\Asset'
+    dir_path = 'Single_Functions_by_Peicheng\Asset'
     file_list = get_file_list(dir_path)
     conn = sqlite3.connect('file_info.db')
     cursor = conn.cursor()

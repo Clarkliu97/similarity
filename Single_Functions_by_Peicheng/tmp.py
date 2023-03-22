@@ -28,6 +28,6 @@ def get_file_info_list(folder_path):
     return file_info_list
 
 if __name__ == '__main__':
-    folder_path = 'Single_Functions\Asset'
+    folder_path = 'Single_Functions_by_Peicheng\Asset'
     file_info_list = get_file_info_list(folder_path)
     print(file_info_list)
