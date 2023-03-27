@@ -31,6 +31,19 @@ python manage.py migrate
 python manage.py runserver 0.0.0.0:8000
 ```
 
+# Run Celery Purge
+```
+celery -A similarity purge -l info --pool=solo
+```
+
+# Run Celery Worker
+```
+celery -A similarity.worker -l info --pool=solo
+```
+
+# sqlite3 JSON_VALID for windows
+check out https://github.com/heartexlabs/label-studio/issues/679
+
 
 # Check out your site!
 
