@@ -1,5 +1,8 @@
 # Status report and development log for deliverable b) metadata extraction 
 
+## Deliverable purpose: 
+The purpose of this delivery is to increase the reliability of user input. According to the user story map, when users upload their documents, especially from their school drives, it is likely that some documents which are not written by the student will be included. As this project should reflect on the student writing only, the system should not count errors belonging to the teacher or other people. By excluding these files from the analysis, the reliability of the error-student link is enhanced.  
+
 ## Success Criterion/Test Plan: 
 ~~At least 70% of the files can be distinguished by the algorithm properly; ready to be integrated to the prototype or ready to be called by other class.~~
 
