@@ -39,6 +39,11 @@ def get_doc_info(file_path):
     if last_modifier is not None and last_modifier != '':
         last_modifier = last_modifier.decode("utf-8")
     last_modified_time = metadata.last_saved_time
+    if last_modifier is None: 
+        last_modifier = ''
+    if author is None:
+        author = ''
+
     # Check if author and last modifier are the same
     if author.casefold() == last_modifier.casefold():
         consistant = True # Author and last modifier are the same
@@ -91,7 +96,11 @@ def main():
     file_list = get_file_list(dir_path)
     write_to_csv('Single_Functions_by_Peicheng\metadata.csv')
     for file_path in file_list:
-        file_info = get_file_info(file_path)
+        try:
+            file_info = get_file_info(file_path)
+        except:
+            print('Error: ' + file_path)
+            continue
         if file_info:
             add_to_csv('Single_Functions_by_Peicheng\metadata.csv', file_info)
             print(file_info)
