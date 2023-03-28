@@ -9,7 +9,7 @@
 
 # Create a virtual environment to install dependencies in and activate it:
 ```
-python>=3.7.2
+python==3.7
 pip install virtualenv
 virtualenv <project_name>
 source/path/to/venv/bin/activate
@@ -23,13 +23,6 @@ source/path/to/venv/bin/activate
 python manage.py makemigrations
 python manage.py migrate
 ```
-```
-python manage.py migrate --run-syncdb
-```
---run-syncdb - Creates tables for apps without migrations.
-
-# Install Redis
-https://github.com/MicrosoftArchive/redis/releases
 
 
 # Run the django project locally
