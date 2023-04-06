@@ -1,4 +1,6 @@
 # Status report and development log for deliverable b) metadata extraction 
+main function class: metadata_extraction.py
+author: Peicheng Liu
 
 ## Deliverable purpose: 
 The purpose of this delivery is to increase the reliability of user input. According to the user story map, when users upload their documents, especially from their school drives, it is likely that some documents which are not written by the student will be included. As this project should reflect on the student writing only, the system should not count errors belonging to the teacher or other people. By excluding these files from the analysis, the reliability of the error-student link is enhanced.  
@@ -32,3 +34,6 @@ The tool can now compare the Creator and Last Modifier of a file. And it can out
 ### 2023/03/28
 he function now also record the file name in the csv file. 
 
+### 2023/04/05
+The functions is now integrated to the prototype. The metadata extraction is now a part of the backend. Excluding inconsistent files from the analysis. 
+Updated documentchecker/serializers.py and documentchecker/utils.py. See commit log for more details. 
