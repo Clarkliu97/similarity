@@ -87,10 +87,6 @@ class FileSerializer(serializers.ModelSerializer):
                     author = author.decode("utf-8")
                 if last_modifier is not None and last_modifier != '':
                     last_modifier = last_modifier.decode("utf-8")
-                if creation_date is not None and creation_date != '':
-                    creation_date = creation_date.decode("utf-8")
-                if last_modified_date is not None and last_modified_date != '':
-                    last_modified_date = last_modified_date.decode("utf-8")
 
                 text = get_doc_text(file)
                 word_count = words_count(text)
