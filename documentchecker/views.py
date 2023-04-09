@@ -17,6 +17,7 @@ from docx import Document
 from docx.opc.constants import CONTENT_TYPE as CT
 from docx.oxml import parse_xml
 from lxml import etree
+from datetime import datetime
 import json
 import io
 import os
@@ -45,9 +46,12 @@ class DriveView(generics.ListAPIView, generics.GenericAPIView):
         file = request.data.get("file", None)
 
         # Set up the OAuth2 authentication flow
+        print("request: ",request.data)
         access_token = request.data.get('accessToken')
         auther = request.data.get('owners')[0].get('displayName')
         create_time = request.data.get('createdTime')
+        modified_time = request.data.get('modifiedTime')
+        modified_person = request.data.get('lastModifyingUser').get("displayName")
         creds = Credentials(token=access_token, scopes=['https://www.googleapis.com/auth/drive'])
 
         drive_service = build('drive', 'v3', credentials=creds)
@@ -70,39 +74,32 @@ class DriveView(generics.ListAPIView, generics.GenericAPIView):
         with open('tem.docx', 'wb') as f:
             f.write(file_object.getbuffer())
 
-        def update_core_properties(docx_path, new_author, new_created_time):
+        def update_core_properties(docx_path, new_author, new_created_time,new_modified_time,last_modified_persion):
             """
             This function aims to change the metadata of docx but it seems that it doesn't work....
             """
             doc = Document(docx_path)
+            core_properties = doc.core_properties
+            core_properties.author = new_author
+            core_properties.created = new_created_time
+            core_properties.modified = new_modified_time
+            core_properties.last_modified_by = last_modified_persion
 
-            # Locate the core properties part
-            core_props = doc.core_properties._element
-            core_props_part = core_props.getroottree().getroot()
+            doc.save(docx_path)
 
-            # Update the author (dc:creator)
-            author_element = core_props_part.find('.//dc:creator', core_props_part.nsmap)
-            if author_element is not None:
-                author_element.text = new_author
 
-            # Update the created time (dcterms:created)
-            created_element = core_props_part.find('.//dcterms:created', core_props_part.nsmap)
-            if created_element is not None:
-                created_element.text = new_created_time
-                created_element.set('{http://www.w3.org/2001/XMLSchema-instance}type', 'dcterms:W3CDTF')
-
-            # Save the modified document
-            doc.save('modified_docx.docx')
 
 
             # Replace with the path to your .docx file
         input_docx_path = 'tem.docx'
-
+        date_format = "%Y-%m-%dT%H:%M:%S.%fZ"
             # Update the core properties with the new author and created time
-        new_author = 'dawffeafe'
-        new_created_time = '2023-04-06T00:00:00Z'
+        new_author = auther
+        new_created_time = datetime.strptime(create_time, date_format)
+        new_modified_time = datetime.strptime(modified_time, date_format)
+        last_modified_persion = modified_person
 
-        update_core_properties(input_docx_path, new_author, new_created_time)
+        update_core_properties(input_docx_path, new_author, new_created_time, new_modified_time, last_modified_persion)
 
 
 
