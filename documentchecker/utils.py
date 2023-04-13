@@ -11,6 +11,7 @@ file_error_choices = [
     (4, "Invalid created_at date format"),
     (5, "File without words"),
     (6, "File without aurthor"),
+    (7, "Author and Last Modifier are not same"),
 ]
 
 report_choices = [

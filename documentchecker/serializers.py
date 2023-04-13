@@ -40,7 +40,7 @@ class FileSerializer(serializers.ModelSerializer):
         # get file name without extension
         file_name = str(file).split('.')[0]
         config = Threshold.get_solo()
-        if len(file_name) < 1:
+        if len(file_name) < 1:  # file name is empty
             final_attrs['erorr'] = 0
             final_attrs['is_error'] = True
 
@@ -48,10 +48,12 @@ class FileSerializer(serializers.ModelSerializer):
             extension = os.path.splitext(str(file))[-1].lower()
             doc = None
             prop = None
-            author = None
-            creation_date = None
+            author = None  # creator of the document
+            creation_date = None  
+            last_modifier = None  
+            last_modified_date = None  
             word_count = 0
-            if extension == ".docx":
+            if extension == ".docx":  # docx file
 
                 try:
                     doc = Document(file)
@@ -71,14 +73,20 @@ class FileSerializer(serializers.ModelSerializer):
                 if prop is not None:
                     author = prop.author
                     creation_date = prop.created
+                    last_modifier = prop.last_modified_by
+                    last_modified_date = prop.modified
 
-            elif extension == '.doc':
+            elif extension == '.doc':  # doc file
                 ole = olefile.OleFileIO(file)
                 metadata = ole.get_metadata()
                 creation_date = metadata.create_time
                 author = metadata.author
+                last_modifier = metadata.last_saved_by
+                last_modified_date = metadata.last_saved_time
                 if author is not None and author != '':
                     author = author.decode("utf-8")
+                if last_modifier is not None and last_modifier != '':
+                    last_modifier = last_modifier.decode("utf-8")
 
                 text = get_doc_text(file)
                 word_count = words_count(text)
@@ -123,8 +131,16 @@ class FileSerializer(serializers.ModelSerializer):
 
             final_attrs["file"] = file
             final_attrs["author"] = author
-            final_attrs["created_at"] = creation_date
+            # final_attrs["created_at"] = creation_date
+            final_attrs["created_at"] = last_modified_date
             final_attrs["word_count"] = word_count
+
+            if not author.casefold() == last_modifier.casefold():  # author and last modifier are not same
+                final_attrs['error'] = 7
+                final_attrs['is_error'] = True
+                # return final_attrs
+                if config.show_file_error:
+                    raise serializers.ValidationError({"Author": "Author and Last Modifier are not same {} ".format(file)}, code=status.HTTP_400_BAD_REQUEST)
 
             return final_attrs
 

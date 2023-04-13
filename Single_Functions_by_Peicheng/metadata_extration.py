@@ -18,7 +18,30 @@ def get_doc_info(file_path):
     """
     Extract metadata from doc file
     """
-    pass
+    consistant: bool = False  # If author and last modifier are the same
+    ole = olefile.OleFileIO(file_path)  # Open doc file
+    filename = os.path.basename(file_path)  
+    filename_no_ext = os.path.splitext(filename)[0]  # Get file name without extension
+    metadata = ole.get_metadata()  # Get metadata
+
+    author = metadata.author
+    if author is not None and author != '':
+        author = author.decode("utf-8")
+    created_time = metadata.create_time
+    last_modifier = metadata.last_saved_by
+    if last_modifier is not None and last_modifier != '':
+        last_modifier = last_modifier.decode("utf-8")
+    last_modified_time = metadata.last_saved_time
+    if last_modifier is None: 
+        last_modifier = ''
+    if author is None:
+        author = ''
+
+    # Check if author and last modifier are the same
+    if author.casefold() == last_modifier.casefold():
+        consistant = True # Author and last modifier are the same
+    return filename_no_ext, author, created_time, last_modifier, last_modified_time, consistant
+    
 
 def get_file_info(file_path):
     """
@@ -70,7 +93,11 @@ def main():
     cursor = conn.cursor()
     create_table(cursor)
     for file_path in file_list:
-        file_info = get_file_info(file_path)
+        try:
+            file_info = get_file_info(file_path)
+        except:
+            print('Error: ' + file_path)
+            continue
         if file_info:
             insert_data(cursor, file_path, *file_info)
             print(file_info)
