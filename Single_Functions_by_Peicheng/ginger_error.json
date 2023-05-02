@@ -1,0 +1,635 @@
+{
+  "GingerTheDocumentResult": {
+    "Corrections": [
+      {
+        "Confidence": 4,
+        "ShouldReplace": true,
+        "CorrectionType": 3,
+        "TopCategoryId": 21,
+        "TopCategoryIdDescription": "Mismatch between the plurality of the verb and the subject",
+        "MistakeText": "is",
+        "From": 98,
+        "To": 99,
+        "LrnFrg": "Feminist literary theory or more commonly known as feminist criticism is",
+        "MistakeWordsInLrnFrg": [
+          {
+            "From": 70,
+            "To": 71
+          }
+        ],
+        "Suggestions": [
+          {
+            "CategoryId": 21,
+            "CategoryDescription": "Mismatch between the plurality of the verb and the subject",
+            "Text": "are"
+          }
+        ]
+      },
+      {
+        "Confidence": 4,
+        "ShouldReplace": true,
+        "CorrectionType": 1,
+        "TopCategoryId": 31,
+        "TopCategoryIdDescription": "A word was not spelled correctly",
+        "MistakeText": "literatyre",
+        "From": 172,
+        "To": 181,
+        "LrnFrg": "'the ways which literatyre reinforce",
+        "MistakeWordsInLrnFrg": [
+          {
+            "From": 16,
+            "To": 25
+          }
+        ],
+        "Suggestions": [
+          {
+            "CategoryId": 31,
+            "CategoryDescription": "A word was not spelled correctly",
+            "Text": "literature",
+            "Definition": "creative writing of recognized artistic value"
+          }
+        ]
+      },
+      {
+        "Confidence": 4,
+        "ShouldReplace": true,
+        "CorrectionType": 3,
+        "TopCategoryId": 21,
+        "TopCategoryIdDescription": "Mismatch between the plurality of the verb and the subject",
+        "MistakeText": "are",
+        "From": 438,
+        "To": 440,
+        "LrnFrg": "are male dominated and patriarchal related",
+        "MistakeWordsInLrnFrg": [
+          {
+            "From": 0,
+            "To": 2
+          }
+        ],
+        "Suggestions": [
+          {
+            "CategoryId": 21,
+            "CategoryDescription": "Mismatch between the plurality of the verb and the subject",
+            "Text": "is"
+          }
+        ]
+      },
+      {
+        "Confidence": 4,
+        "ShouldReplace": true,
+        "CorrectionType": 1,
+        "TopCategoryId": 31,
+        "TopCategoryIdDescription": "A word was not spelled correctly",
+        "MistakeText": "patronze",
+        "From": 554,
+        "To": 561,
+        "LrnFrg": "patronze and are contained with a superfluity of misogynism",
+        "MistakeWordsInLrnFrg": [
+          {
+            "From": 0,
+            "To": 7
+          }
+        ],
+        "Suggestions": [
+          {
+            "CategoryId": 31,
+            "CategoryDescription": "A word was not spelled correctly",
+            "Text": "patrons",
+            "Definition": "a regular customer"
+          },
+          {
+            "CategoryId": 31,
+            "CategoryDescription": "A word was not spelled correctly",
+            "Text": "patterns",
+            "Definition": "a perceptual structure"
+          },
+          {
+            "CategoryId": 31,
+            "CategoryDescription": "A word was not spelled correctly",
+            "Text": "patronize",
+            "Definition": "assume sponsorship of"
+          }
+        ]
+      },
+      {
+        "Confidence": 3,
+        "ShouldReplace": false,
+        "CorrectionType": 1,
+        "TopCategoryId": 31,
+        "TopCategoryIdDescription": "A word was not spelled correctly",
+        "MistakeText": "misogynism",
+        "From": 603,
+        "To": 612,
+        "LrnFrg": "a superfluity of misogynism",
+        "MistakeWordsInLrnFrg": [
+          {
+            "From": 17,
+            "To": 26
+          }
+        ],
+        "Suggestions": []
+      },
+      {
+        "Confidence": 4,
+        "ShouldReplace": true,
+        "CorrectionType": 6,
+        "TopCategoryId": 49,
+        "TopCategoryIdDescription": "Missing comma",
+        "MistakeText": "However feminist",
+        "From": 998,
+        "To": 1013,
+        "LrnFrg": "However feminist literary theory is extremely subjective",
+        "MistakeWordsInLrnFrg": [
+          {
+            "From": 0,
+            "To": 6
+          },
+          {
+            "From": 8,
+            "To": 15
+          }
+        ],
+        "Suggestions": [
+          {
+            "CategoryId": 49,
+            "CategoryDescription": "Missing comma",
+            "Text": "However, feminist",
+            "Definition": "Accept comma addition"
+          }
+        ]
+      },
+      {
+        "Confidence": 3,
+        "ShouldReplace": false,
+        "CorrectionType": 3,
+        "TopCategoryId": 32,
+        "TopCategoryIdDescription": "No preposition needed",
+        "MistakeText": "with",
+        "From": 1108,
+        "To": 1111,
+        "LrnFrg": "do not conflate with those of their predecessors",
+        "MistakeWordsInLrnFrg": [
+          {
+            "From": 16,
+            "To": 19
+          }
+        ],
+        "Suggestions": [
+          {
+            "CategoryId": 32,
+            "CategoryDescription": "No preposition needed",
+            "Text": ""
+          }
+        ]
+      },
+      {
+        "Confidence": 4,
+        "ShouldReplace": true,
+        "CorrectionType": 1,
+        "TopCategoryId": 31,
+        "TopCategoryIdDescription": "A word was not spelled correctly",
+        "MistakeText": "attrbbuted",
+        "From": 1154,
+        "To": 1163,
+        "LrnFrg": "This can be attrbbuted",
+        "MistakeWordsInLrnFrg": [
+          {
+            "From": 12,
+            "To": 21
+          }
+        ],
+        "Suggestions": [
+          {
+            "CategoryId": 31,
+            "CategoryDescription": "A word was not spelled correctly",
+            "Text": "attributed",
+            "Definition": "attribute or credit to"
+          }
+        ]
+      },
+      {
+        "Confidence": 4,
+        "ShouldReplace": true,
+        "CorrectionType": 1,
+        "TopCategoryId": 31,
+        "TopCategoryIdDescription": "A word was not spelled correctly",
+        "MistakeText": "associatd",
+        "From": 1245,
+        "To": 1253,
+        "LrnFrg": "waves associatd with feminism",
+        "MistakeWordsInLrnFrg": [
+          {
+            "From": 6,
+            "To": 14
+          }
+        ],
+        "Suggestions": [
+          {
+            "CategoryId": 31,
+            "CategoryDescription": "A word was not spelled correctly",
+            "Text": "associated",
+            "Definition": "make a logical or causal connection"
+          },
+          {
+            "CategoryId": 31,
+            "CategoryDescription": "A word was not spelled correctly",
+            "Text": "associate",
+            "Definition": "make a logical or causal connection"
+          }
+        ]
+      },
+      {
+        "Confidence": 4,
+        "ShouldReplace": true,
+        "CorrectionType": 1,
+        "TopCategoryId": 31,
+        "TopCategoryIdDescription": "A word was not spelled correctly",
+        "MistakeText": "laymans",
+        "From": 1335,
+        "To": 1341,
+        "LrnFrg": "In laymans terms,",
+        "MistakeWordsInLrnFrg": [
+          {
+            "From": 3,
+            "To": 9
+          }
+        ],
+        "Suggestions": [
+          {
+            "CategoryId": 31,
+            "CategoryDescription": "A word was not spelled correctly",
+            "Text": "layman's"
+          },
+          {
+            "CategoryId": 31,
+            "CategoryDescription": "A word was not spelled correctly",
+            "Text": "laymen",
+            "Definition": "someone who is not a clergyman or a professional person"
+          },
+          {
+            "CategoryId": 31,
+            "CategoryDescription": "A word was not spelled correctly",
+            "Text": "layman",
+            "Definition": "someone who is not a clergyman or a professional person"
+          }
+        ]
+      },
+      {
+        "Confidence": 4,
+        "ShouldReplace": true,
+        "CorrectionType": 6,
+        "TopCategoryId": 40,
+        "TopCategoryIdDescription": "Missing or superfluous space before or after period, comma and other punctuation marks",
+        "MistakeText": "( ",
+        "From": 1481,
+        "To": 1482,
+        "MistakeDefinition": "Undo space",
+        "LrnFrg": "( a vindication, 1972)",
+        "MistakeWordsInLrnFrg": [
+          {
+            "From": 0,
+            "To": 1
+          }
+        ],
+        "Suggestions": [
+          {
+            "CategoryId": 40,
+            "CategoryDescription": "Missing or superfluous space before or after period, comma and other punctuation marks",
+            "Text": " (",
+            "Definition": "Accept space"
+          }
+        ]
+      },
+      {
+        "Confidence": 4,
+        "ShouldReplace": true,
+        "CorrectionType": 3,
+        "TopCategoryId": 42,
+        "TopCategoryIdDescription": "Confusion between the singular and plural form of a noun",
+        "MistakeText": "woman",
+        "From": 1587,
+        "To": 1591,
+        "Suggestions": [
+          {
+            "CategoryId": 42,
+            "CategoryDescription": "Confusion between the singular and plural form of a noun",
+            "Text": "women"
+          },
+          {
+            "CategoryId": 12,
+            "CategoryDescription": "Confusion between \"a\"/\"an\" or omission of an indefinite article",
+            "Text": "a woman"
+          }
+        ]
+      },
+      {
+        "Confidence": 4,
+        "ShouldReplace": true,
+        "CorrectionType": 1,
+        "TopCategoryId": 31,
+        "TopCategoryIdDescription": "A word was not spelled correctly",
+        "MistakeText": "inferiorly",
+        "From": 1602,
+        "To": 1611,
+        "LrnFrg": "inferiorly due to their lack of education",
+        "MistakeWordsInLrnFrg": [
+          {
+            "From": 0,
+            "To": 9
+          }
+        ],
+        "Suggestions": [
+          {
+            "CategoryId": 31,
+            "CategoryDescription": "A word was not spelled correctly",
+            "Text": "unfairly",
+            "Definition": "in an unfair manner"
+          }
+        ]
+      },
+      {
+        "Confidence": 4,
+        "ShouldReplace": true,
+        "CorrectionType": 1,
+        "TopCategoryId": 31,
+        "TopCategoryIdDescription": "A word was not spelled correctly",
+        "MistakeText": "womens",
+        "From": 1866,
+        "To": 1871,
+        "LrnFrg": "womens suffrage and hierarchal position in society",
+        "MistakeWordsInLrnFrg": [
+          {
+            "From": 0,
+            "To": 5
+          }
+        ],
+        "Suggestions": [
+          {
+            "CategoryId": 31,
+            "CategoryDescription": "A word was not spelled correctly",
+            "Text": "women's"
+          },
+          {
+            "CategoryId": 31,
+            "CategoryDescription": "A word was not spelled correctly",
+            "Text": "women",
+            "Definition": "an adult female person (as opposed to a man)"
+          }
+        ]
+      },
+      {
+        "Confidence": 4,
+        "ShouldReplace": true,
+        "CorrectionType": 3,
+        "TopCategoryId": 30,
+        "TopCategoryIdDescription": "Confusion between the prepositions \"in\", \"on\" and \"at\"",
+        "MistakeText": "in",
+        "From": 2012,
+        "To": 2013,
+        "LrnFrg": "in achieving true equilibrium between men and women",
+        "MistakeWordsInLrnFrg": [
+          {
+            "From": 0,
+            "To": 1
+          }
+        ],
+        "Suggestions": [
+          {
+            "CategoryId": 30,
+            "CategoryDescription": "Confusion between the prepositions \"in\", \"on\" and \"at\"",
+            "Text": "at"
+          }
+        ]
+      },
+      {
+        "Confidence": 4,
+        "ShouldReplace": true,
+        "CorrectionType": 3,
+        "TopCategoryId": 29,
+        "TopCategoryIdDescription": "Wrong preposition",
+        "MistakeText": "in",
+        "From": 2285,
+        "To": 2286,
+        "LrnFrg": "every normal aspect in society",
+        "MistakeWordsInLrnFrg": [
+          {
+            "From": 20,
+            "To": 21
+          }
+        ],
+        "Suggestions": [
+          {
+            "CategoryId": 29,
+            "CategoryDescription": "Wrong preposition",
+            "Text": "of"
+          }
+        ]
+      },
+      {
+        "Confidence": 3,
+        "ShouldReplace": false,
+        "CorrectionType": 1,
+        "TopCategoryId": 31,
+        "TopCategoryIdDescription": "A word was not spelled correctly",
+        "MistakeText": "radicalist",
+        "From": 2369,
+        "To": 2378,
+        "LrnFrg": "to radicalist ideology.",
+        "MistakeWordsInLrnFrg": [
+          {
+            "From": 3,
+            "To": 12
+          }
+        ],
+        "Suggestions": []
+      },
+      {
+        "Confidence": 4,
+        "ShouldReplace": true,
+        "CorrectionType": 6,
+        "TopCategoryId": 40,
+        "TopCategoryIdDescription": "A word was not spelled correctly",
+        "MistakeText": ".",
+        "From": 2388,
+        "To": 2388,
+        "MistakeDefinition": "",
+        "LrnFrg": "",
+        "Suggestions": [
+          {
+            "CategoryId": 40,
+            "Text": ". ",
+            "Definition": "Accept space"
+          }
+        ]
+      },
+      {
+        "Confidence": 4,
+        "ShouldReplace": true,
+        "CorrectionType": 3,
+        "TopCategoryId": 20,
+        "TopCategoryIdDescription": "Error in forming or applying the future tense",
+        "MistakeText": "dictate",
+        "From": 2524,
+        "To": 2530,
+        "LrnFrg": "societal constructs which dictate our world today and place females in an inferior position",
+        "MistakeWordsInLrnFrg": [
+          {
+            "From": 26,
+            "To": 32
+          }
+        ],
+        "Suggestions": [
+          {
+            "CategoryId": 20,
+            "CategoryDescription": "Error in forming or applying the future tense",
+            "Text": "will dictate"
+          }
+        ]
+      }
+    ],
+    "Sentences": [
+      {
+        "FromIndex": 0,
+        "ToIndex": 23,
+        "IsEnglish": true,
+        "ExceededCharacterLimit": false,
+        "IsSentencePart": false,
+        "AllCaps": false
+      },
+      {
+        "FromIndex": 28,
+        "ToIndex": 296,
+        "IsEnglish": true,
+        "ExceededCharacterLimit": false,
+        "IsSentencePart": false,
+        "AllCaps": false
+      },
+      {
+        "FromIndex": 298,
+        "ToIndex": 480,
+        "IsEnglish": true,
+        "ExceededCharacterLimit": false,
+        "IsSentencePart": false,
+        "AllCaps": false
+      },
+      {
+        "FromIndex": 482,
+        "ToIndex": 687,
+        "IsEnglish": true,
+        "ExceededCharacterLimit": false,
+        "IsSentencePart": false,
+        "AllCaps": false
+      },
+      {
+        "FromIndex": 690,
+        "ToIndex": 993,
+        "IsEnglish": true,
+        "ExceededCharacterLimit": false,
+        "IsSentencePart": false,
+        "AllCaps": false
+      },
+      {
+        "FromIndex": 998,
+        "ToIndex": 1140,
+        "IsEnglish": true,
+        "ExceededCharacterLimit": false,
+        "IsSentencePart": false,
+        "AllCaps": false
+      },
+      {
+        "FromIndex": 1142,
+        "ToIndex": 1268,
+        "IsEnglish": true,
+        "ExceededCharacterLimit": false,
+        "IsSentencePart": false,
+        "AllCaps": false
+      },
+      {
+        "FromIndex": 1270,
+        "ToIndex": 1330,
+        "IsEnglish": true,
+        "ExceededCharacterLimit": false,
+        "IsSentencePart": false,
+        "AllCaps": false
+      },
+      {
+        "FromIndex": 1332,
+        "ToIndex": 1421,
+        "IsEnglish": true,
+        "ExceededCharacterLimit": false,
+        "IsSentencePart": false,
+        "AllCaps": false
+      },
+      {
+        "FromIndex": 1423,
+        "ToIndex": 1643,
+        "IsEnglish": true,
+        "ExceededCharacterLimit": false,
+        "IsSentencePart": false,
+        "AllCaps": false
+      },
+      {
+        "FromIndex": 1645,
+        "ToIndex": 1802,
+        "IsEnglish": true,
+        "ExceededCharacterLimit": false,
+        "IsSentencePart": false,
+        "AllCaps": false
+      },
+      {
+        "FromIndex": 1804,
+        "ToIndex": 1916,
+        "IsEnglish": true,
+        "ExceededCharacterLimit": false,
+        "IsSentencePart": false,
+        "AllCaps": false
+      },
+      {
+        "FromIndex": 1920,
+        "ToIndex": 2135,
+        "IsEnglish": true,
+        "ExceededCharacterLimit": false,
+        "IsSentencePart": false,
+        "AllCaps": false
+      },
+      {
+        "FromIndex": 2137,
+        "ToIndex": 2388,
+        "IsEnglish": true,
+        "ExceededCharacterLimit": false,
+        "IsSentencePart": false,
+        "AllCaps": false
+      },
+      {
+        "FromIndex": 2389,
+        "ToIndex": 2416,
+        "IsEnglish": true,
+        "ExceededCharacterLimit": false,
+        "IsSentencePart": false,
+        "AllCaps": false
+      },
+      {
+        "FromIndex": 2419,
+        "ToIndex": 2589,
+        "IsEnglish": true,
+        "ExceededCharacterLimit": false,
+        "IsSentencePart": false,
+        "AllCaps": false
+      },
+      {
+        "FromIndex": 2591,
+        "ToIndex": 2801,
+        "IsEnglish": true,
+        "ExceededCharacterLimit": false,
+        "IsSentencePart": false,
+        "AllCaps": false
+      }
+    ],
+    "Warnings": [
+      {
+        "Code": 1000,
+        "Message": "The Organizational Dictionary was not applied due to a technical failure. Consider ignoring spelling corrections until the issue is resolved."
+      }
+    ]
+  }
+}

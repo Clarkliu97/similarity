@@ -1,0 +1,45 @@
+{
+  "GingerTheDocumentResult": {
+    "Corrections": [],
+    "Sentences": [
+      {
+        "FromIndex": 0,
+        "ToIndex": 29,
+        "IsEnglish": true,
+        "ExceededCharacterLimit": false,
+        "IsSentencePart": false,
+        "AllCaps": false
+      },
+      {
+        "FromIndex": 32,
+        "ToIndex": 44,
+        "IsEnglish": true,
+        "ExceededCharacterLimit": false,
+        "IsSentencePart": false,
+        "AllCaps": false
+      },
+      {
+        "FromIndex": 47,
+        "ToIndex": 156,
+        "IsEnglish": true,
+        "ExceededCharacterLimit": false,
+        "IsSentencePart": false,
+        "AllCaps": false
+      },
+      {
+        "FromIndex": 162,
+        "ToIndex": 219,
+        "IsEnglish": true,
+        "ExceededCharacterLimit": false,
+        "IsSentencePart": false,
+        "AllCaps": false
+      }
+    ],
+    "Warnings": [
+      {
+        "Code": 1000,
+        "Message": "The Organizational Dictionary was not applied due to a technical failure. Consider ignoring spelling corrections until the issue is resolved."
+      }
+    ]
+  }
+}
