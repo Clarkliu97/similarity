@@ -21,8 +21,10 @@ from datetime import datetime
 import json
 import io
 import os
+
 import openai
 import docx
+
 
 
 # Create your views here.
@@ -47,7 +49,9 @@ class DriveView(generics.ListAPIView, generics.GenericAPIView):
         file = request.data.get("file", None)
 
         # Set up the OAuth2 authentication flow
+
         print("request: ", request.data)
+
         access_token = request.data.get('accessToken')
         auther = request.data.get('owners')[0].get('displayName')
         create_time = request.data.get('createdTime')
@@ -76,6 +80,7 @@ class DriveView(generics.ListAPIView, generics.GenericAPIView):
             f.write(file_object.getbuffer())
 
         def update_core_properties(docx_path, new_author, new_created_time, new_modified_time, last_modified_persion):
+
             """
             This function aims to change the metadata of docx but it seems that it doesn't work....
             """
@@ -88,17 +93,20 @@ class DriveView(generics.ListAPIView, generics.GenericAPIView):
 
             doc.save(docx_path)
 
+
             # Replace with the path to your .docx file
 
         input_docx_path = 'tem.docx'
         date_format = "%Y-%m-%dT%H:%M:%S.%fZ"
         # Update the core properties with the new author and created time
+
         new_author = auther
         new_created_time = datetime.strptime(create_time, date_format)
         new_modified_time = datetime.strptime(modified_time, date_format)
         last_modified_persion = modified_person
 
         update_core_properties(input_docx_path, new_author, new_created_time, new_modified_time, last_modified_persion)
+
 
         # Read the doc from disk and create a new InMemoryUploadedFile and pass it to serializer
         with open('tem.docx', 'rb') as f:
@@ -118,8 +126,10 @@ class DriveView(generics.ListAPIView, generics.GenericAPIView):
         query_dict = QueryDict(mutable=True)
         query_dict.update({'file': uploaded_file})
         temp = query_dict
+
         print("query_dict: ", query_dict)
         print("fileeee: ", query_dict.get("file"))
+
         if temp == "":
             return Response(
                 {"file": "file is empty"}, status=status.HTTP_400_BAD_REQUEST
@@ -135,6 +145,7 @@ class DriveView(generics.ListAPIView, generics.GenericAPIView):
         print("is here")
         if serializer.is_valid(raise_exception=True):
             serializer.save()
+
             original_data = serializer.data
 
             openai.api_key = "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"
@@ -201,6 +212,7 @@ class DriveView(generics.ListAPIView, generics.GenericAPIView):
             additional_data = {"category_key": category_key, "category_list": category_list}
             merged_data = {**original_data, **additional_data}
             return Response(merged_data, status=status.HTTP_201_CREATED)
+
         print(serializer.errors)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -223,12 +235,15 @@ class UploadFile(generics.ListAPIView, generics.GenericAPIView):
     queryset = File.objects.all().order_by("-id")
     lookup_field = "id"
 
+
+
     def post(self, request):
         # print("file:", request)
         # print("---")
 
         print("file:", request.data)
         file = request.data.get("file", None)
+
 
         if file == "":
             return Response(
