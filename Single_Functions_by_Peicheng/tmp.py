@@ -1,33 +1,65 @@
-import os
-import docx
-import time
+import requests
+import json
+from docx import Document
 
-def get_file_info(file_path):
-    file_info = {}
-    file_info['file_name'] = os.path.basename(file_path)
-    file_info['file_path'] = file_path
-    file_info['file_size'] = os.path.getsize(file_path)
-    file_info['file_type'] = os.path.splitext(file_path)[1]
-    file_info['file_create_time'] = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(os.path.getctime(file_path)))
-    file_info['file_modify_time'] = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(os.path.getmtime(file_path)))
-    if file_info['file_type'] == '.docx':
-        doc = docx.Document(file_path)
-        file_info['file_author'] = doc.core_properties.author
-        file_info['file_last_modifier'] = doc.core_properties.last_modified_by
-    elif file_info['file_type'] == '.doc':
-        pass
-    return file_info
+# Replace YOUR_API_KEY with your actual API key from Ginger Software
+API_KEY = "917c943b-ed2f-41b1-a251-1303d17dc515"
 
-def get_file_info_list(folder_path):
-    file_info_list = []
-    for root, dirs, files in os.walk(folder_path):
-        for file in files:
-            file_path = os.path.join(root, file)
-            file_info = get_file_info(file_path)
-            file_info_list.append(file_info)
-    return file_info_list
+# Replace DOCX_FILE_PATH with the path to your DOCX file
+DOCX_FILE_PATH = "Single_Functions_by_Peicheng\Asset\Feminist Literary theory.docx"
 
-if __name__ == '__main__':
-    folder_path = 'Single_Functions_by_Peicheng\Asset'
-    file_info_list = get_file_info_list(folder_path)
-    print(file_info_list)
+# Read the content of the DOCX file
+with open(DOCX_FILE_PATH, "rb") as f:
+    doc = Document(f)
+    docText = '\n\n'.join(paragraph.text for paragraph in doc.paragraphs)
+
+# Construct the request URL and headers
+url = "https://prevprod.gingersoftware.com/correction/v1/document?apiKey=" + API_KEY + "&lang=UK"
+
+#  Content-Type: text/plain
+headers = {"Content-Type": "text/plain"}
+
+# # Construct the request body as a plain text string
+# data = { "apiKey": API_KEY, "lang": "UK", "text": docText }
+
+print(docText.encode('utf-8'))
+
+# Send the HTTP POST request to the API endpoint
+response = requests.post(url, headers=headers, data=docText.encode('utf-8'))
+
+# Check if the request was successful
+if response.status_code == 200:
+    try:
+        # Parse the response JSON object
+        result = json.loads(response.text)
+        result = json.dumps(result, indent=2)
+        # print(result)
+        # write response text to json file
+        with open('Single_Functions_by_Peicheng\ginger_error.json', 'w') as f:
+            f.write(result)
+            f.close()
+
+        with open('Single_Functions_by_Peicheng\ginger_error.json', 'r') as f:
+            result = json.load(f)
+            
+        # Extract the errors from the response
+        if "GingerTheDocumentResult" in result:
+            documentResult = result["GingerTheDocumentResult"]
+            errors = documentResult["Corrections"] 
+            for error in errors: 
+                # print(error)
+                categoryId = error["TopCategoryId"] 
+                print(categoryId)
+                start = error["From"]
+                end = error["To"]
+        else:
+            print("No errors detected.")
+    except json.decoder.JSONDecodeError as e:
+        print(f"Failed to parse JSON response: {e}")
+else:
+    print(f"Request failed with status code {response.status_code}.")
+    #  write response text to html file
+    with open('Single_Functions_by_Peicheng\ginger_error.html', 'w') as f:
+        f.write(response.text)
+        f.close()
+

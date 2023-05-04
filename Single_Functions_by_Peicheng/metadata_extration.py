@@ -2,6 +2,7 @@ import os
 import sqlite3
 import docx
 import time
+import olefile
 
 def get_docx_info(file_path):
     """
