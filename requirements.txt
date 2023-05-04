@@ -1,14 +1,14 @@
 # python==3.7
 # python>=3.7.2
-django==3.2
-djangorestframework==3.12.2
+django~=3.2
+djangorestframework~=3.12.2
 django-cors-headers==3.4.0
-celery==5.2.7
+celery~=5.2.7
 django-celery-beat==2.4.0
-docx==0.2.4
+docx~=0.2.4
 python-docx==0.8.11
-thefuzz==0.19.0
-olefile==0.46
+thefuzz~=0.19.0
+olefile~=0.46
 # for celery importy error install
 # importlib-metadata==4.8.3
 django-redis==5.0.0
@@ -17,7 +17,12 @@ python-Levenshtein==0.20.9
 # pip install -U pip setuptools wheel
 # pip install -U spacy
 # python -m spacy download en_core_web_lg
-spacy==3.4.4
+spacy~=3.4.4
 
 # for antiword
 # sudo apt-get install antiword
+lxml~=4.9.2
+python-dateutil~=2.8.2
+openai~=0.27.4
+google~=3.0.0
+google-api-python-client~=2.86.0
