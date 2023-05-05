@@ -147,7 +147,7 @@ class DriveView(generics.ListAPIView, generics.GenericAPIView):
             serializer.save()
 
             original_data = serializer.data
-
+            # This part conduct gpi classification api invocation. Please update it to company api if possible.
             openai.api_key = "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"
 
             doc = docx.Document(file)
@@ -260,7 +260,8 @@ class UploadFile(generics.ListAPIView, generics.GenericAPIView):
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             original_data = serializer.data
-
+            
+            # This part conduct gpi classification api invocation. Please update it to company api if possible.
             openai.api_key = "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"
 
             doc = docx.Document(file)
