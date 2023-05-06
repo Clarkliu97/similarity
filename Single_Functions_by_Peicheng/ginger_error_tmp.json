@@ -5,47 +5,57 @@
         "Confidence": 4,
         "ShouldReplace": true,
         "CorrectionType": 6,
-        "TopCategoryId": 45,
-        "TopCategoryIdDescription": "The first word in a sentence is not capitalized",
-        "MistakeText": "the",
-        "From": 89,
-        "To": 91,
-        "LrnFrg": "the conflicting viewpoints developed",
+        "TopCategoryId": 49,
+        "TopCategoryIdDescription": "Missing comma",
+        "MistakeText": "JULIET Act",
+        "From": 22,
+        "To": 31,
+        "LrnFrg": "JULIET Act 2 Scene 2",
         "MistakeWordsInLrnFrg": [
           {
             "From": 0,
-            "To": 2
+            "To": 5
+          },
+          {
+            "From": 7,
+            "To": 9
           }
         ],
         "Suggestions": [
           {
-            "CategoryId": 45,
-            "CategoryDescription": "The first word in a sentence is not capitalized",
-            "Text": "The"
+            "CategoryId": 49,
+            "CategoryDescription": "Missing comma",
+            "Text": "JULIET, Act",
+            "Definition": "Accept comma addition"
           }
         ]
       },
       {
-        "Confidence": 3,
-        "ShouldReplace": false,
-        "CorrectionType": 3,
-        "TopCategoryId": 32,
-        "TopCategoryIdDescription": "No preposition needed",
-        "MistakeText": "into",
-        "From": 233,
-        "To": 236,
-        "LrnFrg": "effectively perpetuates into uncovering the truth",
+        "Confidence": 4,
+        "ShouldReplace": true,
+        "CorrectionType": 6,
+        "TopCategoryId": 49,
+        "TopCategoryIdDescription": "Missing comma",
+        "MistakeText": "Juliet Act",
+        "From": 85,
+        "To": 94,
+        "LrnFrg": "Juliet Act 2 scene 2",
         "MistakeWordsInLrnFrg": [
           {
-            "From": 24,
-            "To": 27
+            "From": 0,
+            "To": 5
+          },
+          {
+            "From": 7,
+            "To": 9
           }
         ],
         "Suggestions": [
           {
-            "CategoryId": 32,
-            "CategoryDescription": "No preposition needed",
-            "Text": ""
+            "CategoryId": 49,
+            "CategoryDescription": "Missing comma",
+            "Text": "Juliet, Act",
+            "Definition": "Accept comma addition"
           }
         ]
       },
@@ -55,21 +65,157 @@
         "CorrectionType": 6,
         "TopCategoryId": 45,
         "TopCategoryIdDescription": "The first word in a sentence is not capitalized",
-        "MistakeText": "the",
-        "From": 348,
-        "To": 350,
-        "LrnFrg": "the different focus points",
+        "MistakeText": "wherefore",
+        "From": 123,
+        "To": 131,
+        "LrnFrg": "wherefore art thou Romeo",
         "MistakeWordsInLrnFrg": [
           {
             "From": 0,
-            "To": 2
+            "To": 8
           }
         ],
         "Suggestions": [
           {
             "CategoryId": 45,
             "CategoryDescription": "The first word in a sentence is not capitalized",
-            "Text": "The"
+            "Text": "Wherefore"
+          }
+        ]
+      },
+      {
+        "Confidence": 4,
+        "ShouldReplace": true,
+        "CorrectionType": 6,
+        "TopCategoryId": 49,
+        "TopCategoryIdDescription": "Missing comma",
+        "MistakeText": "Juliet Act",
+        "From": 189,
+        "To": 198,
+        "LrnFrg": "Juliet Act 2 scene 2",
+        "MistakeWordsInLrnFrg": [
+          {
+            "From": 0,
+            "To": 5
+          },
+          {
+            "From": 7,
+            "To": 9
+          }
+        ],
+        "Suggestions": [
+          {
+            "CategoryId": 49,
+            "CategoryDescription": "Missing comma",
+            "Text": "Juliet, Act",
+            "Definition": "Accept comma addition"
+          }
+        ]
+      },
+      {
+        "Confidence": 4,
+        "ShouldReplace": true,
+        "CorrectionType": 6,
+        "TopCategoryId": 40,
+        "TopCategoryIdDescription": "Missing or superfluous space before or after period, comma and other punctuation marks",
+        "MistakeText": "(",
+        "From": 344,
+        "To": 344,
+        "MistakeDefinition": "Undo space",
+        "LrnFrg": "Sampson(Capulet)",
+        "MistakeWordsInLrnFrg": [
+          {
+            "From": 7,
+            "To": 7
+          }
+        ],
+        "Suggestions": [
+          {
+            "CategoryId": 40,
+            "CategoryDescription": "Missing or superfluous space before or after period, comma and other punctuation marks",
+            "Text": " (",
+            "Definition": "Accept space"
+          }
+        ]
+      },
+      {
+        "Confidence": 4,
+        "ShouldReplace": true,
+        "CorrectionType": 1,
+        "TopCategoryId": 2,
+        "TopCategoryIdDescription": "A proper or common noun is not capitalized",
+        "MistakeText": "capulet",
+        "From": 345,
+        "To": 351,
+        "LrnFrg": "Sampson (capulet)",
+        "MistakeWordsInLrnFrg": [
+          {
+            "From": 9,
+            "To": 15
+          }
+        ],
+        "Suggestions": [
+          {
+            "CategoryId": 2,
+            "CategoryDescription": "A proper or common noun is not capitalized",
+            "Text": "Capulet"
+          }
+        ]
+      },
+      {
+        "Confidence": 4,
+        "ShouldReplace": true,
+        "CorrectionType": 6,
+        "TopCategoryId": 49,
+        "TopCategoryIdDescription": "Missing comma",
+        "MistakeText": "Juliet  Act",
+        "From": 445,
+        "To": 455,
+        "LrnFrg": "Juliet Act 2 Scene 6",
+        "MistakeWordsInLrnFrg": [
+          {
+            "From": 0,
+            "To": 5
+          },
+          {
+            "From": 7,
+            "To": 9
+          }
+        ],
+        "Suggestions": [
+          {
+            "CategoryId": 49,
+            "CategoryDescription": "Missing comma",
+            "Text": "Juliet, Act",
+            "Definition": "Accept comma addition"
+          }
+        ]
+      },
+      {
+        "Confidence": 4,
+        "ShouldReplace": true,
+        "CorrectionType": 3,
+        "TopCategoryId": 35,
+        "TopCategoryIdDescription": "Error in forming or applying the present perfect tense",
+        "MistakeText": "is grown",
+        "From": 488,
+        "To": 495,
+        "LrnFrg": "\u2026 But my true love is grown to such excess",
+        "MistakeWordsInLrnFrg": [
+          {
+            "From": 19,
+            "To": 20
+          },
+          {
+            "From": 22,
+            "To": 26
+          }
+        ],
+        "Suggestions": [
+          {
+            "CategoryId": 35,
+            "CategoryDescription": "Error in forming or applying the present perfect tense",
+            "Text": "has grown"
           }
         ]
       }
@@ -77,39 +223,143 @@
     "Sentences": [
       {
         "FromIndex": 0,
-        "ToIndex": 84,
+        "ToIndex": 17,
         "IsEnglish": true,
         "ExceededCharacterLimit": false,
         "IsSentencePart": false,
         "AllCaps": false
       },
       {
-        "FromIndex": 89,
-        "ToIndex": 165,
+        "FromIndex": 22,
+        "ToIndex": 41,
         "IsEnglish": true,
         "ExceededCharacterLimit": false,
         "IsSentencePart": false,
         "AllCaps": false
       },
       {
-        "FromIndex": 168,
-        "ToIndex": 258,
+        "FromIndex": 44,
+        "ToIndex": 81,
         "IsEnglish": true,
         "ExceededCharacterLimit": false,
         "IsSentencePart": false,
         "AllCaps": false
       },
       {
-        "FromIndex": 260,
-        "ToIndex": 344,
+        "FromIndex": 85,
+        "ToIndex": 104,
         "IsEnglish": true,
         "ExceededCharacterLimit": false,
         "IsSentencePart": false,
         "AllCaps": false
       },
       {
-        "FromIndex": 348,
-        "ToIndex": 487,
+        "FromIndex": 107,
+        "ToIndex": 121,
+        "IsEnglish": true,
+        "ExceededCharacterLimit": false,
+        "IsSentencePart": false,
+        "AllCaps": false
+      },
+      {
+        "FromIndex": 123,
+        "ToIndex": 147,
+        "IsEnglish": true,
+        "ExceededCharacterLimit": false,
+        "IsSentencePart": false,
+        "AllCaps": false
+      },
+      {
+        "FromIndex": 149,
+        "ToIndex": 184,
+        "IsEnglish": true,
+        "ExceededCharacterLimit": false,
+        "IsSentencePart": false,
+        "AllCaps": false
+      },
+      {
+        "FromIndex": 189,
+        "ToIndex": 208,
+        "IsEnglish": true,
+        "ExceededCharacterLimit": false,
+        "IsSentencePart": false,
+        "AllCaps": false
+      },
+      {
+        "FromIndex": 214,
+        "ToIndex": 250,
+        "IsEnglish": true,
+        "ExceededCharacterLimit": false,
+        "IsSentencePart": false,
+        "AllCaps": false
+      },
+      {
+        "FromIndex": 252,
+        "ToIndex": 292,
+        "IsEnglish": true,
+        "ExceededCharacterLimit": false,
+        "IsSentencePart": false,
+        "AllCaps": false
+      },
+      {
+        "FromIndex": 294,
+        "ToIndex": 332,
+        "IsEnglish": true,
+        "ExceededCharacterLimit": false,
+        "IsSentencePart": false,
+        "AllCaps": false
+      },
+      {
+        "FromIndex": 337,
+        "ToIndex": 352,
+        "IsEnglish": true,
+        "ExceededCharacterLimit": false,
+        "IsSentencePart": false,
+        "AllCaps": false
+      },
+      {
+        "FromIndex": 355,
+        "ToIndex": 367,
+        "IsEnglish": true,
+        "ExceededCharacterLimit": false,
+        "IsSentencePart": false,
+        "AllCaps": false
+      },
+      {
+        "FromIndex": 370,
+        "ToIndex": 377,
+        "IsEnglish": true,
+        "ExceededCharacterLimit": false,
+        "IsSentencePart": false,
+        "AllCaps": false
+      },
+      {
+        "FromIndex": 379,
+        "ToIndex": 439,
+        "IsEnglish": true,
+        "ExceededCharacterLimit": false,
+        "IsSentencePart": false,
+        "AllCaps": false
+      },
+      {
+        "FromIndex": 445,
+        "ToIndex": 465,
+        "IsEnglish": true,
+        "ExceededCharacterLimit": false,
+        "IsSentencePart": false,
+        "AllCaps": false
+      },
+      {
+        "FromIndex": 468,
+        "ToIndex": 510,
+        "IsEnglish": true,
+        "ExceededCharacterLimit": false,
+        "IsSentencePart": false,
+        "AllCaps": false
+      },
+      {
+        "FromIndex": 512,
+        "ToIndex": 549,
         "IsEnglish": true,
         "ExceededCharacterLimit": false,
         "IsSentencePart": false,
