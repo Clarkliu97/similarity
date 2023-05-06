@@ -396,7 +396,7 @@ class TaskView(
         # Check every entry in output list and get the author's work
         result = remove_different_author(authors)
         result = remove_illegal_files(result)
-        print("result:\n", result, "\n", len(result))
+        # print("result:\n", result, "\n", len(result))
         result = error_checking(result)
         # for o in output:
         #     print("o:", o)
@@ -582,7 +582,7 @@ def error_checking(output):
         print("Total error number\t Spelling error number\t Grammar error number\t Punctuation error number\t Syntax error number\t Style error number\t Other error number")
         print(total_error_number, "\t", spelling_error_number, "\t", grammar_error_number, "\t", punctuation_error_number, "\t", syntax_error_number, "\t", style_error_number, "\t", other_error_number)
     
-    print(len(list_of_name), " ", len(list_of_date), " ", len(list_of_genre), " ", len(list_of_subject), " ", len(tot_nums), " ", len(spe_nums), " ", len(gra_nums), " ", len(pun_nums), " ", len(syn_nums), " ", len(sty_nums), " ", len(oth_nums))
+    # print(len(list_of_name), " ", len(list_of_date), " ", len(list_of_genre), " ", len(list_of_subject), " ", len(tot_nums), " ", len(spe_nums), " ", len(gra_nums), " ", len(pun_nums), " ", len(syn_nums), " ", len(sty_nums), " ", len(oth_nums))
     write_to_csv(list_of_name, list_of_date, list_of_genre, list_of_subject, tot_nums, spe_nums, gra_nums, pun_nums, syn_nums, sty_nums, oth_nums)
     # Add to output list
     for i in range(len(output)):
@@ -630,7 +630,7 @@ def plot_graph_by_date():
             if year_month not in date: 
                 date.append(year_month)
         date.sort()
-        print(date)
+        # print(date)
 
         # Create lists of 0s same length as date
         tot_nums = [0.] * len(date)
@@ -662,14 +662,14 @@ def plot_graph_by_date():
         sty_nums = [x / y for x, y in zip(sty_nums, fil_nums)]
         oth_nums = [x / y for x, y in zip(oth_nums, fil_nums)]
         
-        print(tot_nums)
-        print(spe_nums)
-        print(gra_nums)
-        print(pun_nums)
-        print(syn_nums)
-        print(sty_nums)
-        print(oth_nums)
-        print(fil_nums)
+        # print(tot_nums)
+        # print(spe_nums)
+        # print(gra_nums)
+        # print(pun_nums)
+        # print(syn_nums)
+        # print(sty_nums)
+        # print(oth_nums)
+        # print(fil_nums)
 
     for i in range(len(date)):
         date[i] = datetime.datetime.strptime(date[i], '%Y-%m')
