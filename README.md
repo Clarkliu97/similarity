@@ -9,7 +9,7 @@
 
 # Create a virtual environment to install dependencies in and activate it:
 ```
-python>=3.7.2
+python>=3.10.2
 pip install virtualenv
 virtualenv <project_name>
 source/path/to/venv/bin/activate

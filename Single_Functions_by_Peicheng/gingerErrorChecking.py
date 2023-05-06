@@ -110,6 +110,7 @@ def main():
 
                 with open('Single_Functions_by_Peicheng\ginger_error_tmp.json', 'r') as f:
                     result = json.load(f)
+                    f.close()
                     
                 # Extract the errors from the response
                 if "GingerTheDocumentResult" in result:
