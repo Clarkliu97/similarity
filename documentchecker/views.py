@@ -154,7 +154,7 @@ class DriveView(generics.ListAPIView, generics.GenericAPIView):
 
             original_data = serializer.data
 
-            openai.api_key = ("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")
+            openai.api_key = os.environ.get("OPENAI_API_KEY")
 
             doc = docx.Document(file)
             full_text = []
@@ -268,7 +268,7 @@ class UploadFile(generics.ListAPIView, generics.GenericAPIView):
             serializer.save()
             original_data = serializer.data
 
-            openai.api_key = ("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")
+            openai.api_key = os.environ.get("OPENAI_API_KEY")
 
             doc = docx.Document(file)
             full_text = []
