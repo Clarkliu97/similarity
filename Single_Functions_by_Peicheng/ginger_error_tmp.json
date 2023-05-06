@@ -4,61 +4,29 @@
       {
         "Confidence": 4,
         "ShouldReplace": true,
-        "CorrectionType": 3,
-        "TopCategoryId": 34,
-        "TopCategoryIdDescription": "Error in forming or applying the present simple tense",
-        "MistakeText": "does this mean and what kind of life did",
-        "From": 423,
-        "To": 462,
-        "LrnFrg": "What does this mean and what kind of life did he lead",
+        "CorrectionType": 6,
+        "TopCategoryId": 49,
+        "TopCategoryIdDescription": "Missing comma",
+        "MistakeText": "JULIET Act",
+        "From": 22,
+        "To": 31,
+        "LrnFrg": "JULIET Act 2 Scene 2",
         "MistakeWordsInLrnFrg": [
           {
-            "From": 5,
-            "To": 8
+            "From": 0,
+            "To": 5
           },
           {
-            "From": 10,
-            "To": 13
-          },
-          {
-            "From": 15,
-            "To": 18
-          },
-          {
-            "From": 20,
-            "To": 22
-          },
-          {
-            "From": 24,
-            "To": 27
-          },
-          {
-            "From": 29,
-            "To": 32
-          },
-          {
-            "From": 34,
-            "To": 35
-          },
-          {
-            "From": 37,
-            "To": 40
-          },
-          {
-            "From": 42,
-            "To": 44
+            "From": 7,
+            "To": 9
           }
         ],
         "Suggestions": [
           {
-            "CategoryId": 34,
-            "CategoryDescription": "Error in forming or applying the present simple tense",
-            "Text": "does this mean and what kind of life do"
-          },
-          {
-            "CategoryId": 15,
-            "CategoryDescription": "Wrong verb tense or form",
-            "Text": "does this mean and what kind of life did"
+            "CategoryId": 49,
+            "CategoryDescription": "Missing comma",
+            "Text": "JULIET, Act",
+            "Definition": "Accept comma addition"
           }
         ]
       },
@@ -68,25 +36,25 @@
         "CorrectionType": 6,
         "TopCategoryId": 49,
         "TopCategoryIdDescription": "Missing comma",
-        "MistakeText": "images because",
-        "From": 2263,
-        "To": 2276,
-        "LrnFrg": "are closed in all images because he would only lift his eyes to heaven",
+        "MistakeText": "Juliet Act",
+        "From": 85,
+        "To": 94,
+        "LrnFrg": "Juliet Act 2 scene 2",
         "MistakeWordsInLrnFrg": [
           {
-            "From": 18,
-            "To": 23
+            "From": 0,
+            "To": 5
           },
           {
-            "From": 25,
-            "To": 31
+            "From": 7,
+            "To": 9
           }
         ],
         "Suggestions": [
           {
             "CategoryId": 49,
             "CategoryDescription": "Missing comma",
-            "Text": "images, because",
+            "Text": "Juliet, Act",
             "Definition": "Accept comma addition"
           }
         ]
@@ -94,26 +62,24 @@
       {
         "Confidence": 4,
         "ShouldReplace": true,
-        "CorrectionType": 2,
-        "TopCategoryId": 46,
-        "TopCategoryIdDescription": "Confusion between words which sound similar or have a similar spelling",
-        "MistakeText": "died",
-        "From": 2370,
-        "To": 2373,
-        "MistakeDefinition": "pass from physical life and lose all bodily attributes and functions necessary to sustain life",
-        "LrnFrg": "when he died his eyes were closed so he would not see anyone",
+        "CorrectionType": 6,
+        "TopCategoryId": 45,
+        "TopCategoryIdDescription": "The first word in a sentence is not capitalized",
+        "MistakeText": "wherefore",
+        "From": 123,
+        "To": 131,
+        "LrnFrg": "wherefore art thou Romeo",
         "MistakeWordsInLrnFrg": [
           {
-            "From": 8,
-            "To": 11
+            "From": 0,
+            "To": 8
           }
         ],
         "Suggestions": [
           {
-            "CategoryId": 46,
-            "CategoryDescription": "Confusion between words which sound similar or have a similar spelling",
-            "Text": "did",
-            "Definition": "engage in"
+            "CategoryId": 45,
+            "CategoryDescription": "The first word in a sentence is not capitalized",
+            "Text": "Wherefore"
           }
         ]
       },
@@ -123,41 +89,105 @@
         "CorrectionType": 6,
         "TopCategoryId": 49,
         "TopCategoryIdDescription": "Missing comma",
-        "MistakeText": "nun suffered",
-        "From": 2836,
-        "To": 2847,
+        "MistakeText": "Juliet Act",
+        "From": 189,
+        "To": 198,
+        "LrnFrg": "Juliet Act 2 scene 2",
+        "MistakeWordsInLrnFrg": [
+          {
+            "From": 0,
+            "To": 5
+          },
+          {
+            "From": 7,
+            "To": 9
+          }
+        ],
         "Suggestions": [
           {
             "CategoryId": 49,
             "CategoryDescription": "Missing comma",
-            "Text": "nun, suffered",
+            "Text": "Juliet, Act",
             "Definition": "Accept comma addition"
           }
         ]
       },
       {
-        "Confidence": 3,
-        "ShouldReplace": false,
-        "CorrectionType": 2,
-        "TopCategoryId": 46,
-        "TopCategoryIdDescription": "Confusion between words which sound similar or have a similar spelling",
-        "MistakeText": "healed",
-        "From": 3166,
-        "To": 3171,
-        "MistakeDefinition": "freed from illness or injury",
-        "LrnFrg": "She was healed every 22nd of the month the wound will open and bleed",
+        "Confidence": 4,
+        "ShouldReplace": true,
+        "CorrectionType": 6,
+        "TopCategoryId": 40,
+        "TopCategoryIdDescription": "Missing or superfluous space before or after period, comma and other punctuation marks",
+        "MistakeText": "(",
+        "From": 344,
+        "To": 344,
+        "MistakeDefinition": "Undo space",
+        "LrnFrg": "Sampson(Capulet)",
         "MistakeWordsInLrnFrg": [
           {
-            "From": 8,
-            "To": 13
+            "From": 7,
+            "To": 7
           }
         ],
         "Suggestions": [
           {
-            "CategoryId": 46,
-            "CategoryDescription": "Confusion between words which sound similar or have a similar spelling",
-            "Text": "held",
-            "Definition": "occupied or in the control of; often used in combination"
+            "CategoryId": 40,
+            "CategoryDescription": "Missing or superfluous space before or after period, comma and other punctuation marks",
+            "Text": " (",
+            "Definition": "Accept space"
+          }
+        ]
+      },
+      {
+        "Confidence": 4,
+        "ShouldReplace": true,
+        "CorrectionType": 1,
+        "TopCategoryId": 2,
+        "TopCategoryIdDescription": "A proper or common noun is not capitalized",
+        "MistakeText": "capulet",
+        "From": 345,
+        "To": 351,
+        "LrnFrg": "Sampson (capulet)",
+        "MistakeWordsInLrnFrg": [
+          {
+            "From": 9,
+            "To": 15
+          }
+        ],
+        "Suggestions": [
+          {
+            "CategoryId": 2,
+            "CategoryDescription": "A proper or common noun is not capitalized",
+            "Text": "Capulet"
+          }
+        ]
+      },
+      {
+        "Confidence": 4,
+        "ShouldReplace": true,
+        "CorrectionType": 6,
+        "TopCategoryId": 49,
+        "TopCategoryIdDescription": "Missing comma",
+        "MistakeText": "Juliet  Act",
+        "From": 445,
+        "To": 455,
+        "LrnFrg": "Juliet Act 2 Scene 6",
+        "MistakeWordsInLrnFrg": [
+          {
+            "From": 0,
+            "To": 5
+          },
+          {
+            "From": 7,
+            "To": 9
+          }
+        ],
+        "Suggestions": [
+          {
+            "CategoryId": 49,
+            "CategoryDescription": "Missing comma",
+            "Text": "Juliet, Act",
+            "Definition": "Accept comma addition"
           }
         ]
       },
@@ -165,263 +195,27 @@
         "Confidence": 4,
         "ShouldReplace": true,
         "CorrectionType": 3,
-        "TopCategoryId": 50,
-        "TopCategoryIdDescription": "Wrong usage of comparative and superlative structures",
-        "MistakeText": "saint",
-        "From": 3597,
-        "To": 3601,
-        "LrnFrg": "have inspired the saint monk",
+        "TopCategoryId": 35,
+        "TopCategoryIdDescription": "Error in forming or applying the present perfect tense",
+        "MistakeText": "is grown",
+        "From": 488,
+        "To": 495,
+        "LrnFrg": "\u2026 But my true love is grown to such excess",
         "MistakeWordsInLrnFrg": [
           {
-            "From": 18,
-            "To": 22
+            "From": 19,
+            "To": 20
+          },
+          {
+            "From": 22,
+            "To": 26
           }
         ],
         "Suggestions": [
           {
-            "CategoryId": 50,
-            "CategoryDescription": "Wrong usage of comparative and superlative structures",
-            "Text": "saintly"
-          }
-        ]
-      },
-      {
-        "Confidence": 4,
-        "ShouldReplace": true,
-        "CorrectionType": 6,
-        "TopCategoryId": 45,
-        "TopCategoryIdDescription": "The first word in a sentence is not capitalized",
-        "MistakeText": "to",
-        "From": 3609,
-        "To": 3610,
-        "LrnFrg": "to lead the perfect life of a hermit",
-        "MistakeWordsInLrnFrg": [
-          {
-            "From": 0,
-            "To": 1
-          }
-        ],
-        "Suggestions": [
-          {
-            "CategoryId": 45,
-            "CategoryDescription": "The first word in a sentence is not capitalized",
-            "Text": "To"
-          }
-        ]
-      },
-      {
-        "Confidence": 4,
-        "ShouldReplace": true,
-        "CorrectionType": 6,
-        "TopCategoryId": 45,
-        "TopCategoryIdDescription": "The first word in a sentence is not capitalized",
-        "MistakeText": "and",
-        "From": 3690,
-        "To": 3692,
-        "LrnFrg": "and the strength to",
-        "MistakeWordsInLrnFrg": [
-          {
-            "From": 0,
-            "To": 2
-          }
-        ],
-        "Suggestions": [
-          {
-            "CategoryId": 45,
-            "CategoryDescription": "The first word in a sentence is not capitalized",
-            "Text": "And"
-          }
-        ]
-      },
-      {
-        "Confidence": 4,
-        "ShouldReplace": true,
-        "CorrectionType": 6,
-        "TopCategoryId": 45,
-        "TopCategoryIdDescription": "The first word in a sentence is not capitalized",
-        "MistakeText": "so",
-        "From": 3740,
-        "To": 3741,
-        "LrnFrg": "so that the heroism of the monastic virtues of poverty",
-        "MistakeWordsInLrnFrg": [
-          {
-            "From": 0,
-            "To": 1
-          }
-        ],
-        "Suggestions": [
-          {
-            "CategoryId": 45,
-            "CategoryDescription": "The first word in a sentence is not capitalized",
-            "Text": "So"
-          }
-        ]
-      },
-      {
-        "Confidence": 4,
-        "ShouldReplace": true,
-        "CorrectionType": 6,
-        "TopCategoryId": 45,
-        "TopCategoryIdDescription": "The first word in a sentence is not capitalized",
-        "MistakeText": "obedience",
-        "From": 3796,
-        "To": 3804,
-        "LrnFrg": "obedience, and chastity",
-        "MistakeWordsInLrnFrg": [
-          {
-            "From": 0,
-            "To": 8
-          }
-        ],
-        "Suggestions": [
-          {
-            "CategoryId": 45,
-            "CategoryDescription": "The first word in a sentence is not capitalized",
-            "Text": "Obedience"
-          }
-        ]
-      },
-      {
-        "Confidence": 4,
-        "ShouldReplace": true,
-        "CorrectionType": 6,
-        "TopCategoryId": 45,
-        "TopCategoryIdDescription": "The first word in a sentence is not capitalized",
-        "MistakeText": "could",
-        "From": 3821,
-        "To": 3825,
-        "LrnFrg": "could triumph in his hermitage",
-        "MistakeWordsInLrnFrg": [
-          {
-            "From": 0,
-            "To": 4
-          }
-        ],
-        "Suggestions": [
-          {
-            "CategoryId": 45,
-            "CategoryDescription": "The first word in a sentence is not capitalized",
-            "Text": "Could"
-          }
-        ]
-      },
-      {
-        "Confidence": 4,
-        "ShouldReplace": true,
-        "CorrectionType": 6,
-        "TopCategoryId": 45,
-        "TopCategoryIdDescription": "The first word in a sentence is not capitalized",
-        "MistakeText": "following",
-        "From": 3917,
-        "To": 3925,
-        "LrnFrg": "following his example.",
-        "MistakeWordsInLrnFrg": [
-          {
-            "From": 0,
-            "To": 8
-          }
-        ],
-        "Suggestions": [
-          {
-            "CategoryId": 45,
-            "CategoryDescription": "The first word in a sentence is not capitalized",
-            "Text": "Following"
-          }
-        ]
-      },
-      {
-        "Confidence": 4,
-        "ShouldReplace": true,
-        "CorrectionType": 6,
-        "TopCategoryId": 45,
-        "TopCategoryIdDescription": "The first word in a sentence is not capitalized",
-        "MistakeText": "the",
-        "From": 3973,
-        "To": 3975,
-        "LrnFrg": "the power of St. Charbel's intercession",
-        "MistakeWordsInLrnFrg": [
-          {
-            "From": 0,
-            "To": 2
-          }
-        ],
-        "Suggestions": [
-          {
-            "CategoryId": 45,
-            "CategoryDescription": "The first word in a sentence is not capitalized",
-            "Text": "The"
-          }
-        ]
-      },
-      {
-        "Confidence": 4,
-        "ShouldReplace": true,
-        "CorrectionType": 6,
-        "TopCategoryId": 45,
-        "TopCategoryIdDescription": "The first word in a sentence is not capitalized",
-        "MistakeText": "through",
-        "From": 4013,
-        "To": 4019,
-        "LrnFrg": "through his countless miracles and favours",
-        "MistakeWordsInLrnFrg": [
-          {
-            "From": 0,
-            "To": 6
-          }
-        ],
-        "Suggestions": [
-          {
-            "CategoryId": 45,
-            "CategoryDescription": "The first word in a sentence is not capitalized",
-            "Text": "Through"
-          }
-        ]
-      },
-      {
-        "Confidence": 4,
-        "ShouldReplace": true,
-        "CorrectionType": 6,
-        "TopCategoryId": 45,
-        "TopCategoryIdDescription": "The first word in a sentence is not capitalized",
-        "MistakeText": "grant",
-        "From": 4057,
-        "To": 4061,
-        "LrnFrg": "grant us.",
-        "MistakeWordsInLrnFrg": [
-          {
-            "From": 0,
-            "To": 4
-          }
-        ],
-        "Suggestions": [
-          {
-            "CategoryId": 45,
-            "CategoryDescription": "The first word in a sentence is not capitalized",
-            "Text": "Grant"
-          }
-        ]
-      },
-      {
-        "Confidence": 4,
-        "ShouldReplace": true,
-        "CorrectionType": 6,
-        "TopCategoryId": 45,
-        "TopCategoryIdDescription": "The first word in a sentence is not capitalized",
-        "MistakeText": "through",
-        "From": 4105,
-        "To": 4111,
-        "LrnFrg": "through his intercession.",
-        "MistakeWordsInLrnFrg": [
-          {
-            "From": 0,
-            "To": 6
-          }
-        ],
-        "Suggestions": [
-          {
-            "CategoryId": 45,
-            "CategoryDescription": "The first word in a sentence is not capitalized",
-            "Text": "Through"
+            "CategoryId": 35,
+            "CategoryDescription": "Error in forming or applying the present perfect tense",
+            "Text": "has grown"
           }
         ]
       }
@@ -429,503 +223,143 @@
     "Sentences": [
       {
         "FromIndex": 0,
-        "ToIndex": 9,
-        "IsEnglish": true,
-        "ExceededCharacterLimit": false,
-        "IsSentencePart": false,
-        "AllCaps": true
-      },
-      {
-        "FromIndex": 12,
-        "ToIndex": 109,
+        "ToIndex": 17,
         "IsEnglish": true,
         "ExceededCharacterLimit": false,
         "IsSentencePart": false,
         "AllCaps": false
       },
       {
-        "FromIndex": 113,
-        "ToIndex": 179,
+        "FromIndex": 22,
+        "ToIndex": 41,
         "IsEnglish": true,
         "ExceededCharacterLimit": false,
         "IsSentencePart": false,
         "AllCaps": false
       },
       {
-        "FromIndex": 184,
-        "ToIndex": 220,
+        "FromIndex": 44,
+        "ToIndex": 81,
         "IsEnglish": true,
         "ExceededCharacterLimit": false,
         "IsSentencePart": false,
         "AllCaps": false
       },
       {
-        "FromIndex": 223,
-        "ToIndex": 313,
+        "FromIndex": 85,
+        "ToIndex": 104,
         "IsEnglish": true,
         "ExceededCharacterLimit": false,
         "IsSentencePart": false,
         "AllCaps": false
       },
       {
-        "FromIndex": 316,
-        "ToIndex": 365,
+        "FromIndex": 107,
+        "ToIndex": 121,
         "IsEnglish": true,
         "ExceededCharacterLimit": false,
         "IsSentencePart": false,
         "AllCaps": false
       },
       {
-        "FromIndex": 368,
-        "ToIndex": 379,
+        "FromIndex": 123,
+        "ToIndex": 147,
         "IsEnglish": true,
         "ExceededCharacterLimit": false,
         "IsSentencePart": false,
         "AllCaps": false
       },
       {
-        "FromIndex": 382,
-        "ToIndex": 415,
+        "FromIndex": 149,
+        "ToIndex": 184,
         "IsEnglish": true,
         "ExceededCharacterLimit": false,
         "IsSentencePart": false,
         "AllCaps": false
       },
       {
-        "FromIndex": 418,
-        "ToIndex": 471,
+        "FromIndex": 189,
+        "ToIndex": 208,
         "IsEnglish": true,
         "ExceededCharacterLimit": false,
         "IsSentencePart": false,
         "AllCaps": false
       },
       {
-        "FromIndex": 475,
-        "ToIndex": 627,
+        "FromIndex": 214,
+        "ToIndex": 250,
         "IsEnglish": true,
         "ExceededCharacterLimit": false,
         "IsSentencePart": false,
         "AllCaps": false
       },
       {
-        "FromIndex": 632,
-        "ToIndex": 731,
+        "FromIndex": 252,
+        "ToIndex": 292,
         "IsEnglish": true,
         "ExceededCharacterLimit": false,
         "IsSentencePart": false,
         "AllCaps": false
       },
       {
-        "FromIndex": 735,
-        "ToIndex": 765,
+        "FromIndex": 294,
+        "ToIndex": 332,
         "IsEnglish": true,
         "ExceededCharacterLimit": false,
         "IsSentencePart": false,
         "AllCaps": false
       },
       {
-        "FromIndex": 768,
-        "ToIndex": 808,
+        "FromIndex": 337,
+        "ToIndex": 352,
         "IsEnglish": true,
         "ExceededCharacterLimit": false,
         "IsSentencePart": false,
         "AllCaps": false
       },
       {
-        "FromIndex": 812,
-        "ToIndex": 867,
+        "FromIndex": 355,
+        "ToIndex": 367,
         "IsEnglish": true,
         "ExceededCharacterLimit": false,
         "IsSentencePart": false,
         "AllCaps": false
       },
       {
-        "FromIndex": 870,
-        "ToIndex": 934,
+        "FromIndex": 370,
+        "ToIndex": 377,
         "IsEnglish": true,
         "ExceededCharacterLimit": false,
         "IsSentencePart": false,
         "AllCaps": false
       },
       {
-        "FromIndex": 937,
-        "ToIndex": 1039,
+        "FromIndex": 379,
+        "ToIndex": 439,
         "IsEnglish": true,
         "ExceededCharacterLimit": false,
         "IsSentencePart": false,
         "AllCaps": false
       },
       {
-        "FromIndex": 1046,
-        "ToIndex": 1058,
+        "FromIndex": 445,
+        "ToIndex": 465,
         "IsEnglish": true,
         "ExceededCharacterLimit": false,
         "IsSentencePart": false,
         "AllCaps": false
       },
       {
-        "FromIndex": 1062,
-        "ToIndex": 1111,
+        "FromIndex": 468,
+        "ToIndex": 510,
         "IsEnglish": true,
         "ExceededCharacterLimit": false,
         "IsSentencePart": false,
         "AllCaps": false
       },
       {
-        "FromIndex": 1114,
-        "ToIndex": 1151,
-        "IsEnglish": true,
-        "ExceededCharacterLimit": false,
-        "IsSentencePart": false,
-        "AllCaps": false
-      },
-      {
-        "FromIndex": 1156,
-        "ToIndex": 1307,
-        "IsEnglish": true,
-        "ExceededCharacterLimit": false,
-        "IsSentencePart": false,
-        "AllCaps": false
-      },
-      {
-        "FromIndex": 1309,
-        "ToIndex": 1445,
-        "IsEnglish": true,
-        "ExceededCharacterLimit": false,
-        "IsSentencePart": false,
-        "AllCaps": false
-      },
-      {
-        "FromIndex": 1447,
-        "ToIndex": 1595,
-        "IsEnglish": true,
-        "ExceededCharacterLimit": false,
-        "IsSentencePart": false,
-        "AllCaps": false
-      },
-      {
-        "FromIndex": 1598,
-        "ToIndex": 1704,
-        "IsEnglish": true,
-        "ExceededCharacterLimit": false,
-        "IsSentencePart": false,
-        "AllCaps": false
-      },
-      {
-        "FromIndex": 1706,
-        "ToIndex": 1830,
-        "IsEnglish": true,
-        "ExceededCharacterLimit": false,
-        "IsSentencePart": false,
-        "AllCaps": false
-      },
-      {
-        "FromIndex": 1832,
-        "ToIndex": 1867,
-        "IsEnglish": true,
-        "ExceededCharacterLimit": false,
-        "IsSentencePart": false,
-        "AllCaps": false
-      },
-      {
-        "FromIndex": 1869,
-        "ToIndex": 1952,
-        "IsEnglish": true,
-        "ExceededCharacterLimit": false,
-        "IsSentencePart": false,
-        "AllCaps": false
-      },
-      {
-        "FromIndex": 1955,
-        "ToIndex": 2072,
-        "IsEnglish": true,
-        "ExceededCharacterLimit": false,
-        "IsSentencePart": false,
-        "AllCaps": false
-      },
-      {
-        "FromIndex": 2081,
-        "ToIndex": 2171,
-        "IsEnglish": true,
-        "ExceededCharacterLimit": false,
-        "IsSentencePart": false,
-        "AllCaps": false
-      },
-      {
-        "FromIndex": 2174,
-        "ToIndex": 2233,
-        "IsEnglish": true,
-        "ExceededCharacterLimit": false,
-        "IsSentencePart": false,
-        "AllCaps": false
-      },
-      {
-        "FromIndex": 2236,
-        "ToIndex": 2315,
-        "IsEnglish": true,
-        "ExceededCharacterLimit": false,
-        "IsSentencePart": false,
-        "AllCaps": false
-      },
-      {
-        "FromIndex": 2317,
-        "ToIndex": 2422,
-        "IsEnglish": true,
-        "ExceededCharacterLimit": false,
-        "IsSentencePart": false,
-        "AllCaps": false
-      },
-      {
-        "FromIndex": 2424,
-        "ToIndex": 2475,
-        "IsEnglish": true,
-        "ExceededCharacterLimit": false,
-        "IsSentencePart": false,
-        "AllCaps": false
-      },
-      {
-        "FromIndex": 2478,
-        "ToIndex": 2498,
-        "IsEnglish": true,
-        "ExceededCharacterLimit": false,
-        "IsSentencePart": false,
-        "AllCaps": false
-      },
-      {
-        "FromIndex": 2501,
-        "ToIndex": 2566,
-        "IsEnglish": true,
-        "ExceededCharacterLimit": false,
-        "IsSentencePart": false,
-        "AllCaps": false
-      },
-      {
-        "FromIndex": 2568,
-        "ToIndex": 2612,
-        "IsEnglish": true,
-        "ExceededCharacterLimit": false,
-        "IsSentencePart": false,
-        "AllCaps": false
-      },
-      {
-        "FromIndex": 2615,
-        "ToIndex": 2746,
-        "IsEnglish": true,
-        "ExceededCharacterLimit": false,
-        "IsSentencePart": false,
-        "AllCaps": false
-      },
-      {
-        "FromIndex": 2749,
-        "ToIndex": 2820,
-        "IsEnglish": true,
-        "ExceededCharacterLimit": false,
-        "IsSentencePart": false,
-        "AllCaps": false
-      },
-      {
-        "FromIndex": 2823,
-        "ToIndex": 2882,
-        "IsEnglish": true,
-        "ExceededCharacterLimit": false,
-        "IsSentencePart": false,
-        "AllCaps": false
-      },
-      {
-        "FromIndex": 2885,
-        "ToIndex": 2930,
-        "IsEnglish": true,
-        "ExceededCharacterLimit": false,
-        "IsSentencePart": false,
-        "AllCaps": false
-      },
-      {
-        "FromIndex": 2932,
-        "ToIndex": 3045,
-        "IsEnglish": true,
-        "ExceededCharacterLimit": false,
-        "IsSentencePart": false,
-        "AllCaps": false
-      },
-      {
-        "FromIndex": 3048,
-        "ToIndex": 3080,
-        "IsEnglish": true,
-        "ExceededCharacterLimit": false,
-        "IsSentencePart": false,
-        "AllCaps": false
-      },
-      {
-        "FromIndex": 3082,
-        "ToIndex": 3156,
-        "IsEnglish": true,
-        "ExceededCharacterLimit": false,
-        "IsSentencePart": false,
-        "AllCaps": false
-      },
-      {
-        "FromIndex": 3158,
-        "ToIndex": 3239,
-        "IsEnglish": true,
-        "ExceededCharacterLimit": false,
-        "IsSentencePart": false,
-        "AllCaps": false
-      },
-      {
-        "FromIndex": 3242,
-        "ToIndex": 3321,
-        "IsEnglish": true,
-        "ExceededCharacterLimit": false,
-        "IsSentencePart": false,
-        "AllCaps": false
-      },
-      {
-        "FromIndex": 3323,
-        "ToIndex": 3437,
-        "IsEnglish": true,
-        "ExceededCharacterLimit": false,
-        "IsSentencePart": false,
-        "AllCaps": false
-      },
-      {
-        "FromIndex": 3441,
-        "ToIndex": 3511,
-        "IsEnglish": true,
-        "ExceededCharacterLimit": false,
-        "IsSentencePart": false,
-        "AllCaps": false
-      },
-      {
-        "FromIndex": 3514,
-        "ToIndex": 3564,
-        "IsEnglish": true,
-        "ExceededCharacterLimit": false,
-        "IsSentencePart": false,
-        "AllCaps": false
-      },
-      {
-        "FromIndex": 3566,
-        "ToIndex": 3607,
-        "IsEnglish": true,
-        "ExceededCharacterLimit": false,
-        "IsSentencePart": false,
-        "AllCaps": false
-      },
-      {
-        "FromIndex": 3609,
-        "ToIndex": 3645,
-        "IsEnglish": true,
-        "ExceededCharacterLimit": false,
-        "IsSentencePart": false,
-        "AllCaps": false
-      },
-      {
-        "FromIndex": 3647,
-        "ToIndex": 3688,
-        "IsEnglish": true,
-        "ExceededCharacterLimit": false,
-        "IsSentencePart": false,
-        "AllCaps": false
-      },
-      {
-        "FromIndex": 3690,
-        "ToIndex": 3738,
-        "IsEnglish": true,
-        "ExceededCharacterLimit": false,
-        "IsSentencePart": false,
-        "AllCaps": false
-      },
-      {
-        "FromIndex": 3740,
-        "ToIndex": 3794,
-        "IsEnglish": true,
-        "ExceededCharacterLimit": false,
-        "IsSentencePart": false,
-        "AllCaps": false
-      },
-      {
-        "FromIndex": 3796,
-        "ToIndex": 3819,
-        "IsEnglish": true,
-        "ExceededCharacterLimit": false,
-        "IsSentencePart": false,
-        "AllCaps": false
-      },
-      {
-        "FromIndex": 3821,
-        "ToIndex": 3851,
-        "IsEnglish": true,
-        "ExceededCharacterLimit": false,
-        "IsSentencePart": false,
-        "AllCaps": false
-      },
-      {
-        "FromIndex": 3853,
-        "ToIndex": 3915,
-        "IsEnglish": true,
-        "ExceededCharacterLimit": false,
-        "IsSentencePart": false,
-        "AllCaps": false
-      },
-      {
-        "FromIndex": 3917,
-        "ToIndex": 3938,
-        "IsEnglish": true,
-        "ExceededCharacterLimit": false,
-        "IsSentencePart": false,
-        "AllCaps": false
-      },
-      {
-        "FromIndex": 3940,
-        "ToIndex": 3971,
-        "IsEnglish": true,
-        "ExceededCharacterLimit": false,
-        "IsSentencePart": false,
-        "AllCaps": false
-      },
-      {
-        "FromIndex": 3973,
-        "ToIndex": 4011,
-        "IsEnglish": true,
-        "ExceededCharacterLimit": false,
-        "IsSentencePart": false,
-        "AllCaps": false
-      },
-      {
-        "FromIndex": 4013,
-        "ToIndex": 4055,
-        "IsEnglish": true,
-        "ExceededCharacterLimit": false,
-        "IsSentencePart": false,
-        "AllCaps": false
-      },
-      {
-        "FromIndex": 4057,
-        "ToIndex": 4067,
-        "IsEnglish": true,
-        "ExceededCharacterLimit": false,
-        "IsSentencePart": false,
-        "AllCaps": false
-      },
-      {
-        "FromIndex": 4070,
-        "ToIndex": 4102,
-        "IsEnglish": true,
-        "ExceededCharacterLimit": false,
-        "IsSentencePart": false,
-        "AllCaps": false
-      },
-      {
-        "FromIndex": 4105,
-        "ToIndex": 4129,
-        "IsEnglish": true,
-        "ExceededCharacterLimit": false,
-        "IsSentencePart": false,
-        "AllCaps": false
-      },
-      {
-        "FromIndex": 4132,
-        "ToIndex": 4136,
+        "FromIndex": 512,
+        "ToIndex": 549,
         "IsEnglish": true,
         "ExceededCharacterLimit": false,
         "IsSentencePart": false,
