@@ -23,7 +23,7 @@ Generally speaking, the project consists 5 deliverables spreaded over ~~three~~ 
 
 | Deliverable | Name | Description | Delivery Method | Status | Output |
 |-------------|------|-------------|-----------------|--------|--------|
-| a | Expand upload functionality | Implement Google Drive Upload Function | GitHub | Finished | [Link]() |
+| a | Expand upload functionality | Implement Google Drive Upload Function | GitHub | Finished | [Link](https://github.com/Clarkliu97/similarity/blob/5779b43bfb909c77462552089e8d545726a8153b/Deliverable_a_dev_report.md) |
 | b | Properly identifying metadata| Exclude Illegal Files from Analysation | GitHub | Finished | [Link](https://github.com/Clarkliu97/similarity/blob/acdc8dd4a99887a17527133043d6a9a1ebe2baa4/Deliverable_b_dev_report.md) |
 | c | Research ML/NN approaches in Document classification | Write a research report of this topic | Report | Finished | [Report](https://anu365-my.sharepoint.com/:w:/r/personal/u7294212_anu_edu_au/Documents/COMP8715_Penwell/Research%20Reports/Deliverable_C_Document_Classification/Document.docx?d=w3f2b7bd43c48483e849dde9808ff24e1&csf=1&web=1&e=WQfsr4) |
 | d | Document classification with GPT | Implement Classification function using OpenAI API | GitHub | Finished | [Link]() |
