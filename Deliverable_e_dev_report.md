@@ -15,12 +15,14 @@ The team also need to provide a report about the experiment, including the compa
 A working method to utilize all agreed modules (Single_Functions_by_Peicheng\gingerErrorChecking.py)
 
 <input type="checkbox" disabled unchecked />
-A written report analyse the pros and cons of different modules in various perspectives. (TODO)
+A written report analyse the pros and cons of different modules in various perspectives. (In-Progress)
 
 <input type="checkbox" disabled checked />
 Implement the method to the prototype. (Optional)
 (documentchecker/views.py)
 
+## Experiment Report
+[Report](https://anu365-my.sharepoint.com/:w:/g/personal/u7294212_anu_edu_au/EeovlpGuDztDl6IZFV52cEABR4cDUfVphGKtkr_w6Oq5Ug?e=97zSxV)
 ## Status report 
 ### 2023/04/05 
 First attempt to implement the Ginger API in a standalone function. The function is save in Single_Functions_by_Peicheng\tmp.py temporarily. The method successfully sent the request but the server responses 'invalid key'. 
