@@ -19,6 +19,8 @@ The client demands and the agreement can be found in the OneDrive repository.
 
 [SoW Amendment 1](https://anu365-my.sharepoint.com/:b:/r/personal/u7294212_anu_edu_au/Documents/COMP8715_Penwell/Documents/SoW/Amendment_1_SoW.pdf?csf=1&web=1&e=lXXqh0)
 
+[SoW Amdenment 2](https://anu365-my.sharepoint.com/:b:/g/personal/u7294212_anu_edu_au/EdeXZRlcJW5HkI6Ox5eG7qIB0saTrA9V-fGNdtO6EOqFMQ?e=jlpZ1s)
+
 Generally speaking, the project consists 5 deliverables spreaded over ~~three~~ two development phases. The deliverables are listed below: 
 
 | Deliverable | Name | Description | Delivery Method | Status | Output |
