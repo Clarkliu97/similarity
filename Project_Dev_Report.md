@@ -23,6 +23,7 @@ The client demands and the agreement can be found in the OneDrive repository.
 
 Generally speaking, the project consists 5 deliverables spreaded over ~~three~~ two development phases. The deliverables are listed below: 
 
+### Deliverables status and output
 | Deliverable | Name | Description | Delivery Method | Status | Output |
 |-------------|------|-------------|-----------------|--------|--------|
 | a | Expand upload functionality | Implement Google Drive Upload Function | GitHub | Finished | [Link](https://github.com/Clarkliu97/similarity/blob/5779b43bfb909c77462552089e8d545726a8153b/Deliverable_a_dev_report.md) |
